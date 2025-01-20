@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
     <html lang="en">
       <body>
         <Header />
-        <main className="container mx-auto p-4">
+        <main className="container mx-auto md:px-4">
           {children}
         </main>
         <Footer />

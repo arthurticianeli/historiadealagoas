@@ -1,0 +1,27 @@
+.first-letter {
+    font-size: 4em;
+    font-weight: bolder;
+    float: left;
+    margin-right: 0.1em;
+    line-height: 0.8em;
+}
+
+.wp-caption-text {
+    font-size: 0.8em;
+    font-style: italic;
+    text-align: right;
+    margin-top: 0.5em;
+}
+
+.content {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 22px;
+}
+
+.title>* {
+    font-size: 1.8em;
+    font-weight: bolder;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
