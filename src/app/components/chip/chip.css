@@ -1,0 +1,7 @@
+.chip {
+    display: inline-block;
+    color: var(--gold-color);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}

@@ -26,5 +26,46 @@
     opacity: 1;
     max-width: 200px;
     width: 200px;
-    /* Ajuste conforme necessário */
+}
+
+/* Form */
+form {
+    color: var(--foreground);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--secondary);
+    border-radius: 3px;
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+form button {
+    background-color: var(--primary);
+    color: var(--text-color);
+    border: 1px solid var(--secondary);
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: var(--accent-hover);
 }

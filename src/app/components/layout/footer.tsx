@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="py-10 mt-auto">
+        <footer className="py-10 mt-5">
             <div className="max-w-4xl mx-auto">
                 <div className="px-4 grid grid-cols-1 md:grid-cols-3">
                     {/* Coluna Sobre */}
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
                     <p>Copyright © 2025 | História de Alagoas by Edberto Ticianeli</p>
                     <div className="flex items-center space-x-2">
-                        <Image src="/logo-arthur.png" alt="Arthur Ticianeli Logo" width={30} height={30} />
+                        <Image src="/logo-arthur.png" alt="Arthur Ticianeli Logo" width={30} height={30} style={{ width: 'auto', height: 'auto' }} />
                         <p>Desenvolvido por Arthur Ticianeli</p>
                     </div>
                 </div>

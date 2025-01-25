@@ -16,9 +16,13 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  /* font-family: 'Georgia', Helvetica, Arial, sans-serif */
-  font-family: 'Open sans', Helvetica, Arial, sans-serif
+  /* background: var(--background); */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.title-category {
+  color: var(--accent-hover);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 /* Estilo para links */
@@ -28,17 +32,16 @@ a {
 }
 
 a:hover {
-  color: var(--accent-hover);
-  text-decoration: underline;
+  color: var(--accent-hover) !important;
+}
+
+a:hover h2 {
+  color: var(--accent-hover) !important;
 }
 
 button {
   text-decoration: none;
   transition: color 0.3s ease;
-}
-
-button:hover {
-  text-decoration: underline;
 }
 
 /* Cabeçalhos */
@@ -85,44 +88,21 @@ footer div {
   border-color: var(--secondary);
 }
 
-
-/* Form */
-form {
-  color: var(--foreground);
-  padding: 20px;
-  border-radius: 5px;
-  max-width: 500px;
-  margin: 0 auto;
+.loader {
+  border: 16px solid var(--background);
+  border-radius: 50%;
+  border-top: 16px solid var(--accent);
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
 }
 
-form input,
-form textarea,
-form select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid var(--secondary);
-  border-radius: 3px;
-  background-color: var(--background);
-  color: var(--foreground);
-}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
 
-form input:focus,
-form textarea:focus,
-form select:focus {
-  border-color: var(--primary);
-  outline: none;
-}
-
-form button {
-  background-color: var(--primary);
-  color: var(--text-color);
-  border: 1px solid var(--secondary);
-  padding: 10px 20px;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: var(--accent-hover);
+  100% {
+    transform: rotate(360deg);
+  }
 }

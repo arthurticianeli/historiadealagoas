@@ -3,13 +3,15 @@ import { format } from 'date-fns';
 import parse, { domToReact } from 'html-react-parser';
 import Image from 'next/image';
 import React from 'react';
+import Chip from '../chip/chip';
 import './post.css';
 
 interface PostCardProps {
     post: IPost;
+    category: string;
 }
 
-const Post: React.FC<PostCardProps> = ({ post }) => {
+const Post: React.FC<PostCardProps> = ({ post, category }) => {
     const formattedDate = post?.date ? format(new Date(post.date), 'dd/MM/yyyy') : '';
 
     const options = {
@@ -53,14 +55,16 @@ const Post: React.FC<PostCardProps> = ({ post }) => {
             }
 
             if (domNode.name === 'img') {
-                console.log(domNode.attribs)
                 return (
                     <Image
                         src={domNode.attribs.src}
                         alt={domNode.attribs.alt}
-                        layout="responsive"
                         width={700}
                         height={475}
+                        style={{
+                            width: "auto",
+                            height: "auto",
+                        }}
                     />
                 );
             }
@@ -69,17 +73,21 @@ const Post: React.FC<PostCardProps> = ({ post }) => {
 
     return (
         <div className="max-w-[1200px] m-auto bg-white shadow-md rounded-lg p-6 mb-4">
+            <Chip category={category} />
             <h2 className="text-4xl font-bold mb-2">{post?.title?.rendered}</h2>
-            <p className="mb-2">Publicado em {formattedDate} por Edberto Ticianeli</p>
+            <p className="mb-2 text-xs">Publicado em {formattedDate} por Edberto Ticianeli</p>
             {post?.jetpack_featured_media_url && (
                 <a href={post?.jetpack_featured_media_url} target="_blank" rel="noreferrer">
                     <Image
                         src={post?.jetpack_featured_media_url}
                         alt={post?.title?.rendered}
                         className="mb-4"
-                        layout="responsive"
                         width={700}
                         height={475}
+                        style={{
+                            width: "auto",
+                            height: "auto",
+                        }}
                     />
                 </a>
             )}

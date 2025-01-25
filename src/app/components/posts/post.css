@@ -1,16 +1,13 @@
-.first-letter {
-    font-size: 4em;
-    font-weight: bolder;
-    float: left;
-    margin-right: 0.1em;
-    line-height: 0.8em;
+.wp-caption-text {
+    font-size: 1em;
+    font-style: italic;
+    margin-top: 0.5em;
+    text-align: right;
+    margin-left: 20px;
 }
 
-.wp-caption-text {
-    font-size: 0.8em;
-    font-style: italic;
-    text-align: right;
-    margin-top: 0.5em;
+.wp-caption {
+    display: block;
 }
 
 .content {
@@ -24,4 +21,11 @@
     font-weight: bolder;
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+@media screen and (min-width: 800px) {
+    .wp-caption {
+        display: inline-block;
+    }
+
 }

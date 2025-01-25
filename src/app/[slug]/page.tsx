@@ -1,31 +1,20 @@
-"use client";
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import WPAPI from "wpapi";
-import Post from '../components/layout/posts/post';
-import { IPost } from '../interfaces/IPost';
+import { notFound } from 'next/navigation';
+import Post from '../components/posts/post';
+import { getCategoryById, getPostsBySlug } from '../hooks/useWpApi';
 
-const PostPage = () => {
-    const { slug } = useParams();
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    const wp = new WPAPI({ endpoint: apiUrl });
+export async function PostPage({ params }: { readonly params: Promise<{ readonly slug: string }> }) {
 
-    const [post, setPost] = useState<IPost>({} as IPost);
+    const slug = (await params).slug;
 
-    useEffect(() => {
-        if (slug) {
-            wp.posts().slug(slug).then((post: IPost[]) => {
-                setPost(post[0]);
-            });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [slug]);
+    const post = await getPostsBySlug(slug);
 
-    if (!post) {
-        return <div>Loading...</div>;
-    }
+    if (!post) notFound()
 
-    return <Post post={post} />;
+    const category = await getCategoryById(post?.categories[0])
+
+    return (
+        <Post post={post} category={category.name} />
+    );
 };
 
 export default PostPage;
