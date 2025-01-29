@@ -1,15 +1,43 @@
-import { IPost } from "@/app/interfaces/IPost";
-import Link from "next/link";
 
 import { getPostsByFilter } from "@/app/hooks/useWpApi";
-import { FC } from "react";
+import { IBanner } from "@/app/interfaces/IBanner";
+import { IPost } from "@/app/interfaces/IPost";
+import Link from "next/link";
+import { FC, JSX } from "react";
 import Banner from "../banner/banner";
+import Carousel from "../carousel/carousel";
 import { PostNews } from "./postNews";
 
+interface NewsSectionProps {
+    carousel?: boolean;
+    banners?: IBanner[]; // Array de banners
+}
 
-
-const NewsSection: FC = async () => {
+const NewsSection: FC<NewsSectionProps> = async ({ carousel, banners = [] }) => {
     const posts: IPost[] = await getPostsByFilter({ categoryId: 3034, page: 1, perPage: 10 });
+
+    // Função para intercalar posts e banners
+    const interleavePostsAndBanners = (posts: IPost[], banners: IBanner[]) => {
+        const result: JSX.Element[] = [];
+        let bannerIndex = 0;
+
+        posts.forEach((post, index) => {
+            result.push(<PostNews key={`post-${index}`} post={post} />);
+
+            // Insere um banner após cada post, se houver banners disponíveis
+            if (banners.length > 0 && bannerIndex < banners.length) {
+                result.push(
+                    <div key={`banner-${bannerIndex}`} className="max-w-[300px]">
+                        <Banner title={banners[bannerIndex].title} imageUrl={banners[bannerIndex].imageUrl} />
+                    </div>
+                );
+                bannerIndex++;
+            }
+        });
+
+        return result;
+    };
+
     return (
         <div className="col-span-4">
             <Link href={`/categoria/noticias`}>
@@ -18,22 +46,16 @@ const NewsSection: FC = async () => {
                     <span className="text-blue-500 cursor-pointer">Ver mais</span>
                 </div>
             </Link>
-            <div className="grid grid-cols-1 gap-4">
-                {posts?.slice(0, 2).map((post, index) => (
-                    <PostNews key={index} post={post} />
-                ))}
-                {posts?.slice(2, 4).map((post, index) => (
-                    <PostNews key={index} post={post} />
-                ))}
-                <Banner title="Anuncie aqui" imageUrl="https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2020/08/paritura.png?resize=300%2C200&ssl=1" />
-                <Banner title="Anuncie aqui" imageUrl="https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2024/01/GIF-9-ANOS.gif?resize=300%2C250&ssl=1" />
-                <Banner title="Anuncie aqui" imageUrl="https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2022/11/ABC-das-Alagoas.jpg?resize=300%2C300&ssl=1" />
-            </div>
 
-        </div >
+            {carousel ? (
+                <Carousel posts={posts} />
+            ) : (
+                <div className="grid grid-cols-1 gap-4">
+                    {interleavePostsAndBanners(posts, banners)}
+                </div>
+            )}
+        </div>
     );
 };
-
-
 
 export default NewsSection;

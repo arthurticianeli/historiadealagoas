@@ -25,6 +25,11 @@ body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
+.title-container:hover * {
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
 /* Estilo para links */
 a {
   text-decoration: none;
@@ -32,11 +37,11 @@ a {
 }
 
 a:hover {
-  color: var(--accent-hover) !important;
+  color: var(--accent-hover);
 }
 
 a:hover h2 {
-  color: var(--accent-hover) !important;
+  color: var(--accent-hover);
 }
 
 button {
