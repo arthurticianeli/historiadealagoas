@@ -8,21 +8,19 @@ interface PostNewsProps {
 
 
 export const PostNews = ({ post }: PostNewsProps) => {
-
     return (
         <Link href={`/${post.slug}`}>
-            <div className="flex flex-col gap-2 border-b">
+            <div className="flex flex-col gap-2">
                 <div className="w-full">
                     <Image
                         src={post?.jetpack_featured_media_url}
                         alt={post?.title?.rendered}
-                        width={1000}
-                        height={500}
+                        width={500}
+                        height={250}
                         style={{
                             width: "auto",
                             height: "auto",
                         }}
-
                     />
                 </div>
                 <div className="flex-1">

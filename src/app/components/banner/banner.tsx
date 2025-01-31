@@ -8,9 +8,9 @@ interface BannerProps {
 
 const Banner: React.FC<BannerProps> = ({ title, imageUrl }) => {
     return (
-        <div className='flex justify-center w-100 p-2'>
-            <Image unoptimized src={imageUrl} alt={title} layout='responsive' width={728} height={90} />
-        </div>
+
+        <Image className='p-2' src={imageUrl} alt={title} width={1200} height={500} style={{ maxWidth: "100%", height: "auto" }} />
+
     );
 };
 

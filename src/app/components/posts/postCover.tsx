@@ -10,12 +10,11 @@ import "./postCover.css";
 
 interface PostCardProps {
     post: IPost;
-    categories: ICategory[]
+    categories?: ICategory[]
 }
 
 const PostCover: React.FC<PostCardProps> = ({ post, categories }) => {
-    const category = categories.find(category => category.id === post.categories[0])?.name ?? "";
-
+    const category = categories?.find(category => category.id === post.categories[0])?.name ?? "";
     const options = {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         replace: (domNode: any) => {
@@ -40,12 +39,13 @@ const PostCover: React.FC<PostCardProps> = ({ post, categories }) => {
 
                 }}
             />
-            <Chip category={category} />
+            {category &&
+                <Chip category={category} />
+            }
             <h2 className="text-2xl font-bold text-gray-800 leading-tight ">
                 {parse(post.title.rendered)}
             </h2>
             <div className="text-gray-600 text-lg leading-relaxed">{parse(post.excerpt.rendered, options)}</div>
-
         </Link>
     );
 };

@@ -111,3 +111,21 @@ footer div {
     transform: rotate(360deg);
   }
 }
+
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #3b82f6;
+  /* Cor azul do Tailwind */
+}
+
+.swiper-pagination-bullet {
+  background-color: #3b82f6;
+  /* Cor azul do Tailwind */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #1d4ed8;
+  /* Cor azul mais escura do Tailwind */
+}

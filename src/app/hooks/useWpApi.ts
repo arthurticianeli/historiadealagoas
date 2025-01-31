@@ -5,13 +5,25 @@ import { IPost } from '../interfaces/IPost';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const wp = new WPAPI({ endpoint: apiUrl });
 
+export const getPostsDestaques = async (perPage: number): Promise<IPost[]> => {
+    const posts = await wp.posts().exclude([1, 3034]).perPage(perPage).orderby('date').order('desc');
+    return posts;
+}
+
 export const getPostsBySlug = async (slug: string): Promise<IPost> => {
     const posts = await wp.posts().slug(slug);
     return posts[0];
 };
 
-export const getPostsByFilter = async ({ categoryId, page, perPage, excludeCategories }: { categoryId?: number, page?: number, perPage?: number, excludeCategories?: string | number | string[] | number[] }): Promise<IPost[]> => {
-    const posts = await wp.posts().categories(categoryId).excludeCategories(excludeCategories).page(page).perPage(perPage ?? 10).orderby('date').order('desc');
+export const getPostsByFilter = async ({ categoryId, page, perPage, excludeCategories, offset }:
+    {
+        categoryId?: number,
+        page?: number,
+        perPage?: number,
+        excludeCategories?: string | number | string[] | number[],
+        offset?: number
+    }): Promise<IPost[]> => {
+    const posts = await wp.posts().categories(categoryId).excludeCategories(excludeCategories).page(page).perPage(perPage ?? 10).orderby('date').order('desc').offset(offset);
     return posts;
 };
 
