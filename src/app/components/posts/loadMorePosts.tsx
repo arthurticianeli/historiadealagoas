@@ -49,7 +49,7 @@ const LoadMorePosts: React.FC<LoadMorePostsProps> = ({ initialPosts, categoryId 
                 ))}
             </ul>
             {loading && (
-                <div className="flex justify-center items-center mt-5">
+                <div className="flex justify-center items-center mt-4">
                     <div className="loader" />
                 </div>
             )}

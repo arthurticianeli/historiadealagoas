@@ -11,7 +11,7 @@ import { PostNews } from "./postNews";
 
 interface NewsSectionProps {
     carousel?: boolean;
-    banners?: IBanner[]; // Array de banners
+    banners?: IBanner[];
 }
 
 const NewsSection: FC<NewsSectionProps> = async ({ carousel, banners = [] }) => {
@@ -28,9 +28,7 @@ const NewsSection: FC<NewsSectionProps> = async ({ carousel, banners = [] }) => 
             // Insere um banner após cada post, se houver banners disponíveis
             if (banners.length > 0 && bannerIndex < banners.length) {
                 result.push(
-                    <div key={`banner-${bannerIndex}`} className="max-w-[300px] mx-auto border-b-2 border-t-2">
-                        <Banner title={banners[bannerIndex].title} imageUrl={banners[bannerIndex].imageUrl} />
-                    </div>
+                    <Banner key={banners[bannerIndex].title} title={banners[bannerIndex].title} imageUrl={banners[bannerIndex].imageUrl} />
                 );
                 bannerIndex++;
             }

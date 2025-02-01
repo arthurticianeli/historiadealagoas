@@ -8,9 +8,15 @@ interface BannerProps {
 
 const Banner: React.FC<BannerProps> = ({ title, imageUrl }) => {
     return (
-
-        <Image className='p-2' src={imageUrl} alt={title} width={1200} height={500} style={{ maxWidth: "100%", height: "auto" }} />
-
+        <Image
+            src={imageUrl}
+            alt={title}
+            width={800}
+            height={100}
+            className="w-full max-w-[800px] mx-auto"
+            style={{
+                height: "auto",
+            }} />
     );
 };
 

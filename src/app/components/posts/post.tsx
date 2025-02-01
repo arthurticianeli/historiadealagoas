@@ -61,37 +61,44 @@ const Post: React.FC<PostCardProps> = ({ post, category }) => {
                         alt={domNode.attribs.alt}
                         width={700}
                         height={475}
+                        className="w-full"
                         style={{
-                            width: "auto",
                             height: "auto",
                         }}
                     />
+                );
+            }
+
+            if (domNode.name === 'a') {
+                return (
+                    <a href={domNode.attribs.href} target="_blank" rel="noreferrer">
+                        {domToReact(domNode.children, options)}
+                    </a>
                 );
             }
         }
     };
 
     return (
-        <div className="max-w-[1200px] m-auto bg-white shadow-md rounded-lg p-6 mb-4">
+        <div className="w-100 mx-auto px-6 mb-4" style={{ marginTop: "-20px" }}>
             <Chip category={category} />
             <h2 className="text-4xl font-bold mb-2">{post?.title?.rendered}</h2>
             <p className="mb-2 text-xs">Publicado em {formattedDate} por Edberto Ticianeli</p>
             {post?.jetpack_featured_media_url && (
-                <a href={post?.jetpack_featured_media_url} target="_blank" rel="noreferrer">
+                <a href={post?.jetpack_featured_media_url} target="_blank" rel="noreferrer" >
                     <Image
                         src={post?.jetpack_featured_media_url}
                         alt={post?.title?.rendered}
-                        className="mb-4"
+                        className="mb-4 mx-auto w-full"
                         width={700}
                         height={475}
                         style={{
-                            width: "auto",
                             height: "auto",
                         }}
                     />
                 </a>
             )}
-            <div>{parse(post?.content?.rendered || "", options)}</div>
+            <div className="max-w-[900px] m-auto">{parse(post?.content?.rendered || "", options)}</div>
         </div>
     );
 };

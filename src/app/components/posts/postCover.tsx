@@ -28,15 +28,12 @@ const PostCover: React.FC<PostCardProps> = ({ post, categories }) => {
             <Image
                 src={post.jetpack_featured_media_url}
                 alt="Imagem do Post"
-                className="w-full object-cover"
+                className="w-full"
                 width={1000}
                 height={500}
                 priority
                 style={{
-                    objectFit: "scale-down",
-                    width: "auto",
                     height: "auto",
-
                 }}
             />
             {category &&

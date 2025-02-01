@@ -47,7 +47,7 @@ export default function Carousel({ posts }: { readonly posts: ReadonlyArray<IPos
 
     return (
         <div
-            className="relative w-full overflow-hidden mb-5"
+            className="relative w-full overflow-hidden mb-4"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onTouchStart={handleTouchStart}
@@ -58,7 +58,7 @@ export default function Carousel({ posts }: { readonly posts: ReadonlyArray<IPos
                 {posts.map((post) => (
                     <div key={post.id} className="min-w-full mb-2">
                         <img src={post.jetpack_featured_media_url} alt={post.title.rendered} className="w-full h-auto" />
-                        <h2 className="text-xl font-bold">{post.title.rendered}</h2>
+                        <h2 className="text-xl font-bold mt-2 mb-2">{post.title.rendered}</h2>
                     </div>
                 ))}
             </div>

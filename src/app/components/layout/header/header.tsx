@@ -21,7 +21,8 @@ const Header = () => {
                         alt="Logo"
                         width={200}
                         height={75}
-                        className="mt-5" style={{ width: 'auto', height: 'auto' }}
+                        className="mt-4"
+                        style={{ width: 'auto', height: 'auto' }}
                     />
                 </Link>
                 {/* NavItens */}

@@ -23,7 +23,7 @@ const PostList: React.FC<PostListProps> = ({ post }) => {
 
     return (
         <Link href={`/${post.slug}`} >
-            <div className="block sm:flex border-b-2 border-gray-200 p-5 hover-link">
+            <div className="block sm:flex border-b-2 border-gray-200 py-4 hover-link">
                 <Image
                     src={post?.jetpack_featured_media_url}
                     alt={post?.title?.rendered}

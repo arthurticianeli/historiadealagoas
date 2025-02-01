@@ -7,7 +7,7 @@ import { getAllCategories, getPostsByFilter, getPostsDestaques } from "./hooks/u
 import { IBanner } from "./interfaces/IBanner";
 import { IPost } from "./interfaces/IPost";
 
-const bannersMock: IBanner[] = [
+export const bannersMock: IBanner[] = [
   {
     title: "Banner 1",
     imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2020/08/paritura.png?resize=300%2C200&ssl=1",
@@ -79,28 +79,28 @@ export default async function Home() {
     return result;
   };
   return (
-    <div className="mx-auto md:max-w-[1200px] px-4">
+    <div className="mx-auto lg:max-w-[1200px] px-4">
       {/* Destaques e Notícias */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-10">
         {/* Sessão de Destaque */}
-        <div className="col-span-1 md:col-span-9 md:border-e-2 md:pe-10">
+        <div className="col-span-1 lg:col-span-9">
           {/* Destaque principal */}
-          <div className="grid grid-cols-1 gap-6 mb-5">
+          <div className="grid grid-cols-1 gap-6 mb-4">
             <PostCover post={postsDestaque[0]} categories={categories} />
           </div>
 
-          {/* Carrossel em telas menores que md */}
-          <div className="md:hidden flex overflow-x-auto space-x-4">
+          {/* Carrossel em telas menores que lg */}
+          <div className="lg:hidden flex overflow-x-auto space-x-4">
             <NewsSection carousel />
           </div>
 
-          {/* Destaques secundários intercalados com banners em telas menores que md */}
-          <div className="md:hidden grid grid-cols-1 gap-6">
+          {/* Destaques secundários intercalados com banners em telas menores que lg */}
+          <div className="lg:hidden grid grid-cols-1 gap-6">
             {interleavePostsAndBanners(postsDestaque.slice(1), bannersMock)}
           </div>
 
-          {/* Destaques secundários em telas maiores que md */}
-          <div className="hidden md:grid md:grid-cols-2 gap-6">
+          {/* Destaques secundários em telas maiores que lg */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-6">
             {postsDestaque.slice(1).map((post) => (
               <PostCover key={post.id} post={post} categories={categories} />
             ))}
@@ -108,8 +108,8 @@ export default async function Home() {
         </div>
 
         {/* Sessão de Notícias */}
-        <div className="col-span-1 md:col-span-3 md:order-none mb-6 md:mb-0">
-          <div className="hidden md:block">
+        <div className="col-span-1 lg:col-span-3 lg:order-none mb-6 lg:mb-0">
+          <div className="hidden lg:block">
             <NewsSection banners={bannersMock} />
           </div>
         </div>
@@ -118,9 +118,9 @@ export default async function Home() {
       {/* Listagem por Categorias */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         {categories.map((category) => (
-          <div key={category.id} className="mb-5 col-span-1 md:col-span-12">
+          <div key={category.id} className="mb-4 col-span-1 lg:col-span-12">
             <CategoryHeader category={category} />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
               {postsByCategory[category.name]?.map((post: IPost) => (
                 <PostCover key={post.id} post={post} categories={categories} />
               ))}

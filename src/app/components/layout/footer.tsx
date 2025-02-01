@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="py-10 mt-5">
+        <footer className="py-10 mt-4">
             <div className="max-w-4xl mx-auto">
                 <div className="px-4 grid grid-cols-1 md:grid-cols-3">
                     {/* Coluna Sobre */}

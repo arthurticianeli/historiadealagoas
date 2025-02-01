@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
       <html lang="en" className={roboto.className}>
         <body>
           <Header />
-          <div className='flex flex-wrap content-center justify-center my-5'>
+          <div className='flex flex-wrap content-center justify-center my-4'>
             <Banner title="Next.js Blog" imageUrl="https://banner.historiadealagoas.com.br/up/Prestacao-Faz-Faz-Faz-120241213121232.gif" />
           </div>
 
