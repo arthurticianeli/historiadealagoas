@@ -62,7 +62,7 @@ export default async function Home() {
     return result;
   };
   return (
-    <div className="mx-auto lg:max-w-[1200px] px-4">
+    <div className="mx-auto lg:max-w-[1400px] px-4">
       {/* Destaques e Notícias */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-10">
         {/* Sessão de Destaque */}
