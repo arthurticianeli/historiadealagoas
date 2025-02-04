@@ -2,10 +2,12 @@ import Image from 'next/image';
 import NavItens from './navItens/navItens';
 import SearchForm from './searchForm/searchForm';
 
+import { getAllCategories } from '@/app/hooks/useWpApi';
 import Link from 'next/link';
 import './header.css';
 
-const Header = () => {
+const Header = async () => {
+    const categories = await getAllCategories({ excludeNoticias: true });
     return (
         <header
             className="header bg-white border-b border-gray-200 h-[200px] 2xl:h-[250px]"
@@ -27,7 +29,7 @@ const Header = () => {
                 </Link>
                 {/* NavItens */}
                 <div className='flex items-center'>
-                    <NavItens />
+                    <NavItens categories={categories} />
                     <SearchForm />
                 </div>
             </div>

@@ -62,13 +62,29 @@ export const getCategoryById = async (id: number): Promise<ICategory> => {
     return category;
 }
 
-export const getResultsBySearch = async ({ query, page, perPage }: {
+export const getSearchByTitle = async ({ query, page, perPage }: {
     query: string,
     page: number,
     perPage: number,
 }): Promise<IPost[]> => {
-    const posts = await wp.posts().search(query).page(page).perPage(perPage);
-    return posts;
+    const encodedQuery = encodeURIComponent(query);
+    const response = await fetch(`${apiUrl}/wp/v2/posts?search=${encodedQuery}&page=${page}&per_page=${perPage}&search_columns=post_title`);
+    const data = await response.json();
+    return data;
+};
+
+export const getSearchByContent = async ({ query, page, perPage }: {
+    query: string,
+    page: number,
+    perPage: number,
+}): Promise<IPost[]> => {
+    const encodedQuery = encodeURIComponent(query);
+    const response = await fetch(`${apiUrl}/wp/v2/posts?search=${encodedQuery}&page=${page}&per_page=${perPage}&search_columns=post_content`)
+        .then(res => res.json())
+        .then(data => data);
+
+    return response;
+
 };
 
 export const getBanners = async (): Promise<IBanner[]> => {

@@ -1,17 +1,17 @@
 "use client"
 
 import PostList from "@/app/components/postList/postList";
-import { getPostsByFilter, getResultsBySearch } from "@/app/hooks/useWpApi";
+import { getPostsByFilter } from "@/app/hooks/useWpApi";
 import { IPost } from "@/app/interfaces/IPost";
 import React, { useEffect, useState } from 'react';
 
 interface LoadMorePostsProps {
     initialPosts: IPost[];
     categoryId?: number;
-    search?: string;
+
 }
 
-const LoadMorePosts: React.FC<LoadMorePostsProps> = ({ initialPosts, categoryId, search }) => {
+const LoadMorePosts: React.FC<LoadMorePostsProps> = ({ initialPosts, categoryId }) => {
     const [posts, setPosts] = useState(initialPosts);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(2);
@@ -20,16 +20,11 @@ const LoadMorePosts: React.FC<LoadMorePostsProps> = ({ initialPosts, categoryId,
     const loadMorePosts = async () => {
         setLoading(true);
         try {
-            if (search) {
-                const response = await getResultsBySearch({ query: search, page: page, perPage: 10 });
-                setPosts([...posts, ...response]);
-                setPage(page + 1);
-                return;
-            } else {
-                const response = await getPostsByFilter({ categoryId: categoryId, page: page, perPage: 10 });
-                setPosts([...posts, ...response]);
-                setPage(page + 1);
-            }
+
+            const response = await getPostsByFilter({ categoryId: categoryId, page: page, perPage: 10 });
+            setPosts([...posts, ...response]);
+            setPage(page + 1);
+
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             if (error.code === "rest_post_invalid_page_number") {
@@ -42,6 +37,7 @@ const LoadMorePosts: React.FC<LoadMorePostsProps> = ({ initialPosts, categoryId,
 
     useEffect(() => {
         setPosts(initialPosts);
+        setNoMorePosts(false);
     }, [initialPosts]);
 
     useEffect(() => {
@@ -60,7 +56,7 @@ const LoadMorePosts: React.FC<LoadMorePostsProps> = ({ initialPosts, categoryId,
     return (
         <div>
             <ul>
-                {posts.map(post => (
+                {posts?.map(post => (
                     <PostList key={post.id} post={post} />
                 ))}
             </ul>

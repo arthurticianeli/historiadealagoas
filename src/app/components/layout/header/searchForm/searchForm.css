@@ -79,6 +79,13 @@ form button {
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    form button {
+        padding: 10px 0px 10px 20px;
+    }
+}
+
+
 form button:hover {
     background-color: var(--accent-hover);
 }

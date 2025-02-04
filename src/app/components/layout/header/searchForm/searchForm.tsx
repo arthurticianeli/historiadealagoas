@@ -1,10 +1,7 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import {
-    FaAlignJustify
-} from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 import { FaMagnifyingGlass, FaRegCircleXmark } from 'react-icons/fa6';
 import './searchForm.css';
 
@@ -15,10 +12,15 @@ const SearchForm = () => {
 
     const handleSearch = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        if (searchQuery.trim()) {
-            router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
-        }
+
+        router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
+        setIsInputVisible(false);
     };
+
+    useEffect(() => {
+
+
+    }, [router]);
 
     return (
         <div className="flex items-center justify-center">
@@ -47,12 +49,7 @@ const SearchForm = () => {
                     </button>
                 )}
             </form >
-            {/* Botão Mobile */}
-            <div className="md:hidden" >
-                <button className="text-gray-700 hover:text-red-600 text-xl mt-1">
-                    <FaAlignJustify />
-                </button>
-            </div >
+
         </div >
     );
 };
