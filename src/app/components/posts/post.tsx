@@ -16,7 +16,7 @@ const Post: React.FC<PostCardProps> = ({ post, category }) => {
 
 
     return (
-        <div className="w-100 mx-auto px-6 mb-4" style={{ marginTop: "-20px" }}>
+        <div className="w-100 mx-auto px-6 mb-4 max-w-[900px]">
             <Chip category={category} />
             <h2 className="text-4xl font-bold mb-2">{post?.title?.rendered}</h2>
             <p className="mb-2 text-xs">Publicado em {formattedDate} por Edberto Ticianeli</p>
@@ -30,14 +30,16 @@ const Post: React.FC<PostCardProps> = ({ post, category }) => {
                         height={475}
                         style={{
                             height: "auto",
+                            width: "100%",
                         }}
                     />
                 </a>
-            )}
-            <div className="max-w-[900px] m-auto">
+            )
+            }
+            <div className="m-auto">
                 <WpApiParser content={post?.content?.rendered} />
             </div>
-        </div>
+        </div >
     );
 };
 

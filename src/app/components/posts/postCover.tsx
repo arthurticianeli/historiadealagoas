@@ -37,7 +37,9 @@ const PostCover: React.FC<PostCardProps> = ({ post, categories }) => {
                 }}
             />
             {category &&
-                <Chip category={category} />
+                <div className='mt-2'>
+                    <Chip category={category} />
+                </div>
             }
             <h2 className="text-2xl font-bold text-gray-800 leading-tight ">
                 {parse(post.title.rendered)}

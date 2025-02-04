@@ -3,29 +3,14 @@ import Banner from "./components/banner/banner"; // Certifique-se de importar o 
 import CategoryHeader from "./components/categoryHeader/categoryHeader";
 import NewsSection from "./components/news/newsSection";
 import PostCover from "./components/posts/postCover";
-import { getAllCategories, getPostsByFilter, getPostsDestaques } from "./hooks/useWpApi";
+import { getAllCategories, getBanners, getPostsByFilter, getPostsDestaques } from "./hooks/useWpApi";
 import { IBanner } from "./interfaces/IBanner";
 import { IPost } from "./interfaces/IPost";
 
-export const bannersMock: IBanner[] = [
-  {
-    title: "Banner 1",
-    imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/Divulgando-Compositores-Alagoanos.jpg?resize=300%2C150&ssl=1",
-  },
-  {
-    title: "Banner 2",
-    imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/ABC-das-Alagoas-2-x-1.jpg?resize=300%2C150&ssl=1",
-  },
-  {
-    title: "Banner 3",
-    imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/HA-no-Instagram.jpg?resize=300%2C150&ssl=1",
-  },
-];
-
 export default async function Home() {
   const categories = await getAllCategories();
-
-  const bannerLength = bannersMock.length;
+  const banners = await getBanners();
+  const bannerLength = banners.length;
   const postsDestaqueCount = bannerLength + 2;
   const adjustedPostsDestaqueCount = postsDestaqueCount % 2 !== 0 ? postsDestaqueCount : postsDestaqueCount + 1;
 
@@ -94,7 +79,7 @@ export default async function Home() {
 
           {/* Destaques secundários intercalados com banners em telas menores que lg */}
           <div className="lg:hidden grid grid-cols-1 gap-6">
-            {interleavePostsAndBanners(postsDestaque.slice(1), bannersMock)}
+            {interleavePostsAndBanners(postsDestaque.slice(1), banners)}
           </div>
 
           {/* Destaques secundários em telas maiores que lg */}
@@ -108,7 +93,7 @@ export default async function Home() {
         {/* Sessão de Notícias */}
         <div className="col-span-1 lg:col-span-3 lg:order-none mb-6 lg:mb-0">
           <div className="hidden lg:block">
-            <NewsSection banners={bannersMock} />
+            <NewsSection banners={banners} />
           </div>
         </div>
       </div>

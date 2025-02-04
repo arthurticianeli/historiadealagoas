@@ -1,10 +1,25 @@
 import WPAPI from 'wpapi';
+import { IBanner } from '../interfaces/IBanner';
 import { ICategory } from '../interfaces/ICategory';
 import { IPost } from '../interfaces/IPost';
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const wp = new WPAPI({ endpoint: apiUrl });
 
+export const bannersMock: IBanner[] = [
+    {
+        title: "Banner 1",
+        imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/Divulgando-Compositores-Alagoanos.jpg?resize=300%2C150&ssl=1",
+    },
+    {
+        title: "Banner 2",
+        imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/ABC-das-Alagoas-2-x-1.jpg?resize=300%2C150&ssl=1",
+    },
+    {
+        title: "Banner 3",
+        imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/HA-no-Instagram.jpg?resize=300%2C150&ssl=1",
+    },
+];
 
 interface GetAllCategoriesParams {
     excludeNoticias?: boolean;
@@ -55,3 +70,8 @@ export const getResultsBySearch = async ({ query, page, perPage }: {
     const posts = await wp.posts().search(query).page(page).perPage(perPage);
     return posts;
 };
+
+export const getBanners = async (): Promise<IBanner[]> => {
+
+    return bannersMock;
+}
