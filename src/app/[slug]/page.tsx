@@ -16,11 +16,13 @@ async function PostPage({ params }: { readonly params: Promise<{ readonly slug: 
     const category = await getCategoryById(post?.categories[0]);
 
     return (
-        <div className='flex flex-col md:flex-row'>
+        <div className='flex flex-col '>
             <Post post={post} category={category.name} />
-            <div className='flex flex-col ml-4'>
+            <div className='flex flex-wrap justify-center items-center gap-4'>
                 {bannersMock.map((banner) => (
-                    <Banner key={banner.title} title={banner.title} imageUrl={banner.imageUrl} />
+                    <div key={banner.title} >
+                        <Banner title={banner.title} imageUrl={banner.imageUrl} />
+                    </div>
                 ))}
             </div>
         </div>

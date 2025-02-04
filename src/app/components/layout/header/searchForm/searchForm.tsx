@@ -23,24 +23,29 @@ const SearchForm = () => {
     return (
         <div className="flex items-center justify-center">
             <form onSubmit={handleSearch}>
-                <div className="input-group flex items-center justify-center relative">
-                    <input
-                        type="search"
-                        className={`form-control m-0 searchInput ${isInputVisible ? 'show' : ''}`}
-                        placeholder="Buscar"
-                        aria-label="Buscar"
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    {isInputVisible ? (
-                        <button className="searchIcon" type="button" onClick={() => setIsInputVisible(!isInputVisible)}>
-                            <FaRegCircleXmark />
-                        </button>
-                    ) : (
-                        <button className="searchIcon" type="button" onClick={() => setIsInputVisible(!isInputVisible)}>
+                <div className="input-group form-wrapper flex items-center justify-center">
+                    <div className={`flex items-center flex-nowrap bg-white border rounded searchInput ${isInputVisible ? 'show' : ''}`}>
+                        <input
+                            type="search"
+                            className={`form-control bg-white  m-0 ps-4 py-2`}
+                            placeholder="Buscar"
+                            aria-label="Buscar"
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button className="searchIcon" type="submit">
                             <FaMagnifyingGlass />
                         </button>
-                    )}
+                    </div>
                 </div>
+                {isInputVisible ? (
+                    <button className="searchIcon" type="button" onClick={() => setIsInputVisible(!isInputVisible)}>
+                        <FaRegCircleXmark />
+                    </button>
+                ) : (
+                    <button className="searchIcon" type="button" onClick={() => setIsInputVisible(!isInputVisible)}>
+                        <FaMagnifyingGlass />
+                    </button>
+                )}
             </form >
             {/* Botão Mobile */}
             <div className="md:hidden" >

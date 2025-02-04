@@ -5,6 +5,20 @@ import { IPost } from '../interfaces/IPost';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const wp = new WPAPI({ endpoint: apiUrl });
 
+
+interface GetAllCategoriesParams {
+    excludeNoticias?: boolean;
+}
+
+export const getAllCategories = async ({ excludeNoticias }: GetAllCategoriesParams = {}): Promise<ICategory[]> => {
+    const excludeIds = [1];
+    if (excludeNoticias) {
+        excludeIds.push(3034);
+    }
+    const fetchedCategories: ICategory[] = await wp.categories().exclude(excludeIds);
+    return fetchedCategories;
+};
+
 export const getPostsDestaques = async (perPage: number): Promise<IPost[]> => {
     const posts = await wp.posts().exclude([1, 3034]).perPage(perPage).orderby('date').order('desc');
     return posts;
@@ -27,12 +41,17 @@ export const getPostsByFilter = async ({ categoryId, page, perPage, excludeCateg
     return posts;
 };
 
-export const getAllCategories = async (): Promise<ICategory[]> => {
-    const fetchedCategories: ICategory[] = await wp.categories().exclude([1, 3034]);
-    return fetchedCategories;
-};
 
 export const getCategoryById = async (id: number): Promise<ICategory> => {
     const category = await wp.categories().id(id);
     return category;
 }
+
+export const getResultsBySearch = async ({ query, page, perPage }: {
+    query: string,
+    page: number,
+    perPage: number,
+}): Promise<IPost[]> => {
+    const posts = await wp.posts().search(query).page(page).perPage(perPage);
+    return posts;
+};

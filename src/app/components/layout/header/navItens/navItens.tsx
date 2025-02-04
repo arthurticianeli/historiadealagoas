@@ -7,7 +7,7 @@ import { FaAngleDown } from 'react-icons/fa';
 
 const NavItens: React.FC = async () => {
 
-    const categories = await getAllCategories()
+    const categories = await getAllCategories({ excludeNoticias: true });
 
     return (
         <nav className="hidden md:flex space-x-8">

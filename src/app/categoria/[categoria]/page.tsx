@@ -8,6 +8,7 @@ export default async function CategoryPage({ params }: { readonly params: Promis
     const categoria = (await params).categoria;
 
     const categories = await getAllCategories();
+
     const category = categories.find((cat: ICategory) => cat.slug === categoria);
 
     if (!category?.id) notFound()

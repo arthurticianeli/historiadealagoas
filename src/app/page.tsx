@@ -10,25 +10,23 @@ import { IPost } from "./interfaces/IPost";
 export const bannersMock: IBanner[] = [
   {
     title: "Banner 1",
-    imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2020/08/paritura.png?resize=300%2C200&ssl=1",
+    imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/Divulgando-Compositores-Alagoanos.jpg?resize=300%2C150&ssl=1",
   },
   {
     title: "Banner 2",
-    imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2024/01/GIF-9-ANOS.gif?resize=300%2C250&ssl=1",
+    imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/ABC-das-Alagoas-2-x-1.jpg?resize=300%2C150&ssl=1",
   },
   {
     title: "Banner 3",
-    imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2022/11/ABC-das-Alagoas.jpg?resize=300%2C300&ssl=1",
+    imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/HA-no-Instagram.jpg?resize=300%2C150&ssl=1",
   },
-
-
 ];
 
 export default async function Home() {
   const categories = await getAllCategories();
 
   const bannerLength = bannersMock.length;
-  const postsDestaqueCount = bannerLength + 4;
+  const postsDestaqueCount = bannerLength + 2;
   const adjustedPostsDestaqueCount = postsDestaqueCount % 2 !== 0 ? postsDestaqueCount : postsDestaqueCount + 1;
 
   const postsDestaque = await getPostsDestaques(adjustedPostsDestaqueCount);

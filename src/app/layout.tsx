@@ -2,16 +2,24 @@
 import { Roboto } from 'next/font/google'
 import Head from 'next/head'
 import { ReactNode } from 'react'
-import Banner from './components/banner/banner'
+import CarouselBanners from './components/banner/carouselBanners'
 import Footer from './components/layout/footer'
 import Header from './components/layout/header/header'
 import './globals.css'
+import { IBanner } from './interfaces/IBanner'
 
 
 const roboto = Roboto({
   weight: ['400', '700'],
   subsets: ['latin'],
 })
+
+const bannersMock: IBanner[] = [
+  {
+    title: 'Banner 1',
+    imageUrl: 'https://banner.historiadealagoas.com.br/up/Prestacao-Faz-Faz-Faz-120241213121232.gif'
+  },
+]
 
 export default function RootLayout({ children }: { readonly children: ReactNode }) {
   return (
@@ -29,7 +37,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
         <body>
           <Header />
           <div className='flex flex-wrap content-center justify-center my-4'>
-            <Banner title="Next.js Blog" imageUrl="https://banner.historiadealagoas.com.br/up/Prestacao-Faz-Faz-Faz-120241213121232.gif" />
+            <CarouselBanners banners={bannersMock} />
           </div>
 
           <main className="container mx-auto md:px-4">

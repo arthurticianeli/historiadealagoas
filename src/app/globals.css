@@ -93,6 +93,7 @@ footer div {
   border-color: var(--secondary);
 }
 
+
 .loader {
   border: 16px solid var(--background);
   border-radius: 50%;

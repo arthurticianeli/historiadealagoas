@@ -13,10 +13,10 @@
 
 .searchInput {
     position: absolute;
-    right: 50;
-    bottom: 0;
+    right: 10;
+    top: 80;
     opacity: 0;
-    width: 200px;
+    width: 90vw;
     max-width: 0;
     transition: opacity 0.5s ease, max-width 0.5s ease;
     overflow: hidden;
@@ -24,9 +24,25 @@
 
 .searchInput.show {
     opacity: 1;
-    max-width: 200px;
-    width: 200px;
+    max-width: 40vw;
+    width: 40vw;
 }
+
+@media (max-width: 768px) {
+    .searchInput.show {
+        width: 80vw;
+        max-width: 80vw
+    }
+}
+
+@media (min-width: 2000px) {
+    .searchInput.show {
+        width: 20vw;
+        max-width: 20vw;
+
+    }
+}
+
 
 /* Form */
 form {
@@ -42,9 +58,7 @@ form input,
 form textarea,
 form select {
     width: 100%;
-    padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid var(--secondary);
     border-radius: 3px;
     background-color: var(--background);
     color: var(--foreground);
@@ -53,7 +67,6 @@ form select {
 form input:focus,
 form textarea:focus,
 form select:focus {
-    border-color: var(--primary);
     outline: none;
 }
 
