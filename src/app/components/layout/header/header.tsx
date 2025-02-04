@@ -15,7 +15,7 @@ const Header = async () => {
                 backgroundColor: 'var(--main-bg-color)',
                 borderBottom: '4px solid var(--accent)'
             }}>
-            <div className="container mx-auto px-4 flex items-center justify-between py-3 relative z-10">
+            <div className="container p-3 3xl:px-0 mx-auto flex items-center justify-between relative z-10 max-w-[1368px]">
                 {/* Logo */}
                 <Link href="/">
                     <Image
@@ -23,7 +23,6 @@ const Header = async () => {
                         alt="Logo"
                         width={200}
                         height={75}
-                        className="mt-4"
                         style={{ width: 'auto', height: 'auto' }}
                     />
                 </Link>

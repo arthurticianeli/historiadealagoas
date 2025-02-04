@@ -1,20 +1,17 @@
-import { JSX } from "react";
-import Banner from "./components/banner/banner"; // Certifique-se de importar o componente Banner
+import Banner from "./components/banner/banner";
+import CarouselBanners from "./components/banner/carouselBanners";
 import CategoryHeader from "./components/categoryHeader/categoryHeader";
 import NewsSection from "./components/news/newsSection";
 import PostCover from "./components/posts/postCover";
 import { getAllCategories, getBanners, getPostsByFilter, getPostsDestaques } from "./hooks/useWpApi";
-import { IBanner } from "./interfaces/IBanner";
 import { IPost } from "./interfaces/IPost";
+import { bannersMock } from "./layout";
 
 export default async function Home() {
   const categories = await getAllCategories();
   const banners = await getBanners();
-  const bannerLength = banners.length;
-  const postsDestaqueCount = bannerLength + 2;
-  const adjustedPostsDestaqueCount = postsDestaqueCount % 2 !== 0 ? postsDestaqueCount : postsDestaqueCount + 1;
 
-  const postsDestaque = await getPostsDestaques(adjustedPostsDestaqueCount);
+  const postsDestaque = await getPostsDestaques(3);
 
   // Contar posts por categoria no array postsDestaque
   const postsDestaqueCountByCategory = categories.reduce((acc: { [key: number]: number }, category) => {
@@ -30,60 +27,18 @@ export default async function Home() {
     return acc;
   }, Promise.resolve({} as { [key: string]: IPost[] }));
 
-  // Função para intercalar banners com posts
-  const interleavePostsAndBanners = (posts: IPost[], banners: IBanner[]) => {
-    const result: JSX.Element[] = [];
-    let bannerIndex = 0;
-
-    posts.forEach((post) => {
-      result.push(<PostCover key={`post-${post.id}`} post={post} categories={categories} />);
-
-      // Insere um banner após cada post, se houver banners disponíveis
-      if (banners.length > 0 && bannerIndex < banners.length) {
-        result.push(
-          <div key={`banner-${bannerIndex}`} className="max-w-[300px] mx-auto">
-            <Banner title={banners[bannerIndex].title} imageUrl={banners[bannerIndex].imageUrl} />
-          </div>
-        );
-        bannerIndex++;
-      }
-    });
-
-    // Adiciona os banners restantes
-    while (bannerIndex < banners.length) {
-      result.push(
-        <div key={`banner-${bannerIndex}`} className="max-w-[300px] mx-auto">
-          <Banner title={banners[bannerIndex].title} imageUrl={banners[bannerIndex].imageUrl} />
-        </div>
-      );
-      bannerIndex++;
-    }
-
-    return result;
-  };
   return (
     <div className="mx-auto lg:max-w-[1400px] px-4">
-      {/* Destaques e Notícias */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-10">
-        {/* Sessão de Destaque */}
-        <div className="col-span-1 lg:col-span-9">
+      <div className="grid grid-cols-12 gap-10 my-4">
+        <div className="col-span-12 lg:col-span-9 gap-6">
           {/* Destaque principal */}
-          <div className="grid grid-cols-1 gap-6 mb-4">
+          <CarouselBanners banners={bannersMock} />
+
+          <div className="grid grid-span-12 lg:col-span-9 gap-6 mb-4">
             <PostCover post={postsDestaque[0]} categories={categories} />
           </div>
 
-          {/* Carrossel em telas menores que lg */}
-          <div className="lg:hidden flex overflow-x-auto space-x-4">
-            <NewsSection carousel />
-          </div>
-
-          {/* Destaques secundários intercalados com banners em telas menores que lg */}
-          <div className="lg:hidden grid grid-cols-1 gap-6">
-            {interleavePostsAndBanners(postsDestaque.slice(1), banners)}
-          </div>
-
-          {/* Destaques secundários em telas maiores que lg */}
-          <div className="hidden lg:grid lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-6">
             {postsDestaque.slice(1).map((post) => (
               <PostCover key={post.id} post={post} categories={categories} />
             ))}
@@ -91,11 +46,19 @@ export default async function Home() {
         </div>
 
         {/* Sessão de Notícias */}
-        <div className="col-span-1 lg:col-span-3 lg:order-none mb-6 lg:mb-0">
+        <div className="col-span-12 lg:col-span-3 mb-6 lg:mb-0">
           <div className="hidden lg:block">
             <NewsSection banners={banners} />
           </div>
         </div>
+
+      </div>
+      <div className="grid grid-cols-12 col-span-12 my-4 gap-6">
+        {banners.map((banner, index) => (
+          <div key={`banner-${index}`} className="col-span-3">
+            <Banner title={banner.title} imageUrl={banner.imageUrl} />
+          </div>
+        ))}
       </div>
 
       {/* Listagem por Categorias */}

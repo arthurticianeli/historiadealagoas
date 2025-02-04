@@ -13,7 +13,7 @@ const Banner: React.FC<BannerProps> = ({ title, imageUrl }) => {
             alt={title}
             width={800}
             height={100}
-            className="w-full max-w-[800px] mx-auto"
+            className="w-full mx-auto"
             style={{
                 height: "auto",
             }} />

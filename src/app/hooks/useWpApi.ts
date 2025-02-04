@@ -19,6 +19,10 @@ export const bannersMock: IBanner[] = [
         title: "Banner 3",
         imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/HA-no-Instagram.jpg?resize=300%2C150&ssl=1",
     },
+    {
+        title: "Banner 3",
+        imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/HA-no-Instagram.jpg?resize=300%2C150&ssl=1",
+    },
 ];
 
 interface GetAllCategoriesParams {
