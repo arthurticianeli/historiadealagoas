@@ -1,5 +1,5 @@
-import Banner from "./components/banner/banner";
 import CarouselBanners from "./components/banner/carouselBanners";
+import CarouselBannersResponsive from "./components/banner/carouselBannersResponsive";
 import CategoryHeader from "./components/categoryHeader/categoryHeader";
 import NewsSection from "./components/news/newsSection";
 import PostCover from "./components/posts/postCover";
@@ -32,13 +32,15 @@ export default async function Home() {
       <div className="grid grid-cols-12 gap-10 my-4">
         <div className="col-span-12 lg:col-span-9 gap-6">
           {/* Destaque principal */}
-          <CarouselBanners banners={bannersMock} />
+          <div className="grid grid-span-12 lg:col-span-9 mb-4">
+            <CarouselBanners banners={bannersMock} />
+          </div>
 
-          <div className="grid grid-span-12 lg:col-span-9 gap-6 mb-4">
+          <div className="grid grid-span-12 lg:col-span-9 gap-10 mb-4">
             <PostCover post={postsDestaque[0]} categories={categories} />
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-span-12 lg:grid-cols-2 gap-10">
             {postsDestaque.slice(1).map((post) => (
               <PostCover key={post.id} post={post} categories={categories} />
             ))}
@@ -46,20 +48,11 @@ export default async function Home() {
         </div>
 
         {/* Sessão de Notícias */}
-        <div className="col-span-12 lg:col-span-3 mb-6 lg:mb-0">
-          <div className="hidden lg:block">
-            <NewsSection banners={banners} />
-          </div>
-        </div>
+        <NewsSection />
+      </div>
 
-      </div>
-      <div className="grid grid-cols-12 col-span-12 my-4 gap-6">
-        {banners.map((banner, index) => (
-          <div key={`banner-${index}`} className="col-span-3">
-            <Banner title={banner.title} imageUrl={banner.imageUrl} />
-          </div>
-        ))}
-      </div>
+      <CarouselBannersResponsive banners={banners} />
+
 
       {/* Listagem por Categorias */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">

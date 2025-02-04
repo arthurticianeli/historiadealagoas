@@ -20,7 +20,7 @@ const CarouselBanners: React.FC<CarouselBannersProps> = ({ banners }) => {
     }, [banners.length]);
 
     return (
-        <div className="relative w-full overflow-hidden max-h-[100px]">
+        <div className="relative w-full overflow-hidden">
             <Banner title={banners[currentIndex].title} imageUrl={banners[currentIndex].imageUrl} />
         </div>
     );
