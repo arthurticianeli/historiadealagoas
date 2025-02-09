@@ -1,0 +1,9 @@
+.title-category {
+    color: var(--accent-hover);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.title-container:hover * {
+    color: var(--accent-hover);
+    border-color: var(--accent-hover);
+}

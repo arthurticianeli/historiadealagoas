@@ -1,8 +1,10 @@
-import Chip from "@/app/components/chip/chip";
-import LoadMorePosts from "@/app/components/posts/loadMorePosts";
-import { getAllCategories, getPostsByFilter } from "@/app/hooks/useWpApi";
-import { ICategory } from "@/app/interfaces/ICategory";
+
 import { notFound } from "next/navigation";
+import Chip from "src/components/chip/chip";
+import Layout from "src/components/pagesLayout/layout";
+import LoadMorePosts from "src/components/posts/loadMorePosts";
+import { getAllCategories, getPostsByFilter } from "src/hooks/useWpApi";
+import { ICategory } from "src/interfaces/ICategory";
 
 export default async function CategoryPage({ params }: { readonly params: Promise<{ readonly categoria: string }> }) {
     const categoria = (await params).categoria;
@@ -17,8 +19,10 @@ export default async function CategoryPage({ params }: { readonly params: Promis
 
     return (
         <div className="px-5 md:p-0 md:max-w-[900px] mx-auto">
-            {category?.name && <Chip category={category.name} />}
-            <LoadMorePosts initialPosts={initialPosts} categoryId={category.id} />
+            <Layout>
+                {category?.name && <Chip category={category.name} />}
+                <LoadMorePosts initialPosts={initialPosts} categoryId={category.id} />
+            </Layout>
         </div>
     );
 };

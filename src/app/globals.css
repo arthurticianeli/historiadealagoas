@@ -16,19 +16,9 @@
 
 body {
   color: var(--foreground);
-  /* background: var(--background); */
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
-.title-category {
-  color: var(--accent-hover);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
-}
-
-.title-container:hover * {
-  color: var(--accent-hover);
-  border-color: var(--accent-hover);
-}
 
 /* Estilo para links */
 a {
@@ -61,6 +51,10 @@ h6 {
   margin: 0;
 }
 
+h2 {
+  font-size: 20px !important;
+}
+
 /* Texto secundário */
 p,
 span,
@@ -74,7 +68,7 @@ footer {
   color: var(--text-color);
   padding: 20px;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 16px;
 }
 
 footer a {
@@ -112,8 +106,6 @@ footer div {
     transform: rotate(360deg);
   }
 }
-
-
 
 .swiper-button-next,
 .swiper-button-prev {

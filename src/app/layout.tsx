@@ -2,10 +2,10 @@
 import { Roboto } from 'next/font/google'
 import Head from 'next/head'
 import { ReactNode } from 'react'
-import Footer from './components/layout/footer'
-import Header from './components/layout/header/header'
+import Footer from '../components/layout/footer'
+import Header from '../components/layout/header/header'
+import { IBanner } from '../interfaces/IBanner'
 import './globals.css'
-import { IBanner } from './interfaces/IBanner'
 
 
 const roboto = Roboto({
@@ -35,12 +35,9 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
       <html lang="en" className={roboto.className}>
         <body>
           <Header />
-
-
-          <main className="container mx-auto md:px-4">
+          <main>
             {children}
           </main>
-
           <Footer />
         </body>
       </html>
