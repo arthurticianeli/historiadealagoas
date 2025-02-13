@@ -25,7 +25,7 @@ export const PostNews = ({ post }: PostNewsProps) => {
                     />
                 </div>
                 <div className="flex-1">
-                    <h2>
+                    <h2 className="text-sm font-bold">
                         {post.title.rendered}
                     </h2>
                 </div>

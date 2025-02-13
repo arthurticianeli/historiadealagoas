@@ -1,8 +1,9 @@
 "use client"
 
-import { getPostsByFilter } from "@/app/hooks/useWpApi";
+
 import React, { useEffect, useState } from 'react';
 import PostList from "src/components/postList/postList";
+import { getPostsByFilter } from 'src/hooks/useWpApi';
 import { IPost } from "src/interfaces/IPost";
 
 interface LoadMorePostsProps {

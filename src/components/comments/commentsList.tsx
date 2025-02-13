@@ -2,7 +2,7 @@
 import React from 'react';
 import { getComments } from 'src/hooks/useWpApi';
 import { IComment } from 'src/interfaces/IComment';
-import Comments from './renderComments';
+import Comments from './comments';
 
 interface CommentListProps {
     postId: number;
@@ -32,7 +32,6 @@ const CommentsList: React.FC<CommentListProps> = async ({ postId }) => {
         <div className="p-4">
             <h2 className="text-2xl font-bold mb-4">Comentários</h2>
             <Comments comments={organizedComments} />
-
         </div>
     );
 };
