@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { IPost } from 'src/interfaces/IPost';
 import Chip from '../chip/chip';
+import CommentForm from '../comments/commentForm';
 import CommentsList from '../comments/commentsList';
 import WpApiParser from '../wpApiParser/wpApiParser';
 import './post.css';
@@ -41,6 +42,7 @@ const Post: React.FC<PostCardProps> = ({ post, category }) => {
             </div>
 
             <CommentsList postId={post.id} />
+            <CommentForm postId={post.id} />
         </div >
     );
 };

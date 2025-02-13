@@ -1,4 +1,5 @@
 import { IComment } from 'src/interfaces/IComment';
+import { ICreateComment } from 'src/interfaces/ICreateComment';
 import WPAPI from 'wpapi';
 import { IBanner } from '../interfaces/IBanner';
 import { ICategory } from '../interfaces/ICategory';
@@ -109,3 +110,16 @@ export const getComments = async (postId: number): Promise<IComment[]> => {
 
     return comments;
 };
+
+export const postComment = async ({ comment, email, name, date, dateGmt, postId }: ICreateComment): Promise<IComment> => {
+    const response = await wp.comments().create({
+        author_name: name,
+        author_email: email,
+        content: comment,
+        date: date,
+        date_gmt: dateGmt,
+        post: postId,
+    });
+    console.log(response)
+    return response;
+}
