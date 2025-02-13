@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import logoHa from 'public/logo-ha.png';
 import NavItens from './navItens/navItens';
 import SearchForm from './searchForm/searchForm';
 
-import { getAllCategories } from '@/app/hooks/useWpApi';
 import Link from 'next/link';
+import { getAllCategories } from 'src/hooks/useWpApi';
 import './header.css';
 
 const Header = async () => {
@@ -19,11 +20,10 @@ const Header = async () => {
                 {/* Logo */}
                 <Link href="/">
                     <Image
-                        src="/logo-ha.png"
+                        src={logoHa}
                         alt="Logo"
                         width={200}
                         height={75}
-                        style={{ width: 'auto', height: 'auto' }}
                     />
                 </Link>
                 {/* NavItens */}

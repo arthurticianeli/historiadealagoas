@@ -1,8 +1,8 @@
 "use client"
 
-import { getSearchByContent, getSearchByTitle } from "@/app/hooks/useWpApi";
 import React, { useEffect, useState } from 'react';
 import PostList from "src/components/postList/postList";
+import { getSearchByContent, getSearchByTitle } from 'src/hooks/useWpApi';
 import { IPost } from "src/interfaces/IPost";
 
 interface SearchResultsProps {

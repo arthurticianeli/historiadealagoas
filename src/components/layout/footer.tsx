@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import ContactForm from '../contactForm/contactForm';
 
 const Footer: React.FC = () => {
     return (
@@ -30,26 +31,7 @@ const Footer: React.FC = () => {
                             </a>
                         </div>
                     </div>
-                    {/* Cadastro de Email */}
-                    <div className="col-span-1 p-4 border-t md:border-t-0 border-b md:border-b-0 md:border-x">
-                        <h3 className="text-lg font-bold text-white mb-4">Cadastre-se</h3>
-                        <p className="text-white mb-4">Receba as últimas notícias e atualizações diretamente no seu email!</p>
-                        <form className="flex flex-col space-y-4">
-                            <input
-                                type="text"
-                                placeholder="Nome"
-                            />
-                            <input
-                                type="email"
-                                placeholder="Email"
-                            />
-                            <button
-                                type="submit"
-                            >
-                                Cadastrar
-                            </button>
-                        </form>
-                    </div>
+                    <ContactForm />
                 </div>
             </div>
             <hr className="border-t my-4" />

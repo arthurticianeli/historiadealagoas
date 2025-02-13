@@ -7,6 +7,15 @@ import Header from '../components/layout/header/header'
 import { IBanner } from '../interfaces/IBanner'
 import './globals.css'
 
+import logoHa from 'public/logo-ha.png'
+
+export const metadata = {
+  title: 'História de Alagoas',
+  description: 'Encontre a história de Alagoas em um só lugar',
+  image: logoHa.src,
+  type: 'website',
+}
+
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -24,13 +33,10 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
   return (
     <>
       <Head>
-        <title>História de Alagoas</title>
-        <meta name="description" content="Descrição do seu site" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" href="src\app\globals.css" as="style" onLoad={() => { (document.querySelector('link[rel="preload"][href="src\\app\\globals.css"]') as HTMLLinkElement).rel = 'stylesheet'; }} />
-
       </Head>
       <html lang="en" className={roboto.className}>
         <body>

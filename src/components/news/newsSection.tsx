@@ -1,6 +1,6 @@
 
-import { getPostsByFilter } from "@/app/hooks/useWpApi";
 import { FC } from "react";
+import { getPostsByFilter } from "src/hooks/useWpApi";
 import { ICategory } from "src/interfaces/ICategory";
 import { IPost } from "src/interfaces/IPost";
 import Carousel from "../carousel/carousel";

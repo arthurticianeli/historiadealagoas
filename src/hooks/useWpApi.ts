@@ -1,3 +1,4 @@
+import { IComment } from 'src/interfaces/IComment';
 import WPAPI from 'wpapi';
 import { IBanner } from '../interfaces/IBanner';
 import { ICategory } from '../interfaces/ICategory';
@@ -94,3 +95,17 @@ export const getSearchByContent = async ({ query, page, perPage }: {
 export const getBanners = async (): Promise<IBanner[]> => {
     return bannersMock;
 }
+
+export const getComments = async (postId: number): Promise<IComment[]> => {
+    let comments: IComment[] = [];
+    let page = 1;
+    let fetchedComments: IComment[];
+
+    do {
+        fetchedComments = await wp.comments().post(postId).page(page).perPage(100);
+        comments = comments.concat(fetchedComments);
+        page++;
+    } while (fetchedComments.length === 100);
+
+    return comments;
+};
