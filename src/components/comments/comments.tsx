@@ -7,7 +7,7 @@ import WpApiParser from '../wpApiParser/wpApiParser';
 const Comments: React.FC<{ comments: IComment[] }> = ({ comments }) => {
 
     return (
-        <>
+        <div className='space-y-4'>
             {comments.map(comment => (
                 <ul key={comment.id} className="space-y-4">
                     <li key={comment.id} className="p-4 border rounded-lg shadow-sm">
@@ -33,7 +33,7 @@ const Comments: React.FC<{ comments: IComment[] }> = ({ comments }) => {
                     </li>
                 </ul>
             ))}
-        </>
+        </div>
     );
 }
 

@@ -3,6 +3,7 @@
 import emailjs from 'emailjs-com';
 import React, { useState } from 'react';
 import Alert from '../alert/alert';
+import Button from '../button/button';
 
 const ContactForm: React.FC = () => {
     const [name, setName] = useState('');
@@ -77,12 +78,11 @@ const ContactForm: React.FC = () => {
                     />
                     {errors.email && <span className="text-red-500 text-sm absolute bottom-[-13] left-0">{errors.email}</span>}
                 </div>
-                <button
+                <Button
                     type="submit"
-                    className="p-2 bg-blue-500 text-white rounded"
                 >
                     Enviar
-                </button>
+                </Button>
             </form>
             {alert && <Alert message={alert.message} type={alert.type} onClose={() => setAlert(null)} />}
 

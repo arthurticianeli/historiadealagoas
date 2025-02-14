@@ -1,11 +1,13 @@
 "use client"
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { postComment } from 'src/hooks/useWpApi';
 import { ICreateComment } from 'src/interfaces/ICreateComment';
 import * as yup from 'yup';
+import Alert from '../alert/alert';
+import Button from '../button/button';
 
 const schema = yup.object().shape({
     comment: yup.string().required('Comentário é obrigatório'),
@@ -20,19 +22,30 @@ interface CommentFormProps {
 
 
 const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
+
+    const [alert, setAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data: ICreateComment) => {
+    const onSubmit = async (data: ICreateComment) => {
         const comment: ICreateComment = {
             ...data,
             postId: postId,
             date: new Date().toISOString(),
             dateGmt: new Date().toISOString(),
         };
-        postComment(comment);
-    };
+
+        const response = await postComment(comment);
+
+        if (response?.message) {
+            setAlert({ message: `Falha ao enviar o comentário: ${response.code} - ${response.message}`, type: 'error' });
+        } else {
+            setAlert({ message: 'Comentário enviado com sucesso! Aguardando aprovação.', type: 'success' });
+            reset();
+        };
+    }
 
     return (
         <div className="comment-form p-4 bg-white rounded shadow-md">
@@ -40,7 +53,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
             <p className="text-sm text-gray-600 mb-4">Seu e-mail não será publicado.</p>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className='relative'>
-                    <label htmlFor="comment" className="block text-sm font-medium text-gray-700">Comentário</label>
+                    <label htmlFor="comment" className="block text-sm font-medium text-gray-700">Comentário*</label>
                     <textarea
                         id="comment"
                         {...register('comment')}
@@ -72,13 +85,15 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
                 </div>
 
                 <div>
-                    <input
+                    <Button
                         type="submit"
-                        value="Publicar comentário"
-                        className="mt-2 w-full bg-indigo-600 text-white p-2 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    />
+                    >
+                        Publicar comentário
+                    </Button>
+
                 </div>
             </form>
+            {alert && <Alert message={alert.message} type={alert.type} onClose={() => setAlert(null)} />}
         </div>
     );
 };
