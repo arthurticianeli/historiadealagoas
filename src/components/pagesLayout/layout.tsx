@@ -1,18 +1,17 @@
 
-import { bannersMock } from '@/app/layout';
 import { ReactNode } from 'react';
-import { getBanners } from 'src/hooks/useWpApi';
+import { bannersMockMaior } from 'src/mocks/bannersMocks';
 import CarouselBanners from '../banner/carouselBanners';
 import CarouselBannersResponsive from '../banner/carouselBannersResponsive';
 
 
 export default async function Layout({ children }: { readonly children: ReactNode }) {
-  const banners = await getBanners();
+
   return (
     <div className='container mx-auto'>
-      <CarouselBanners banners={bannersMock} />
+      <CarouselBanners banners={bannersMockMaior} />
       {children}
-      <CarouselBannersResponsive banners={banners} />
+      <CarouselBannersResponsive />
     </div>
   )
 }

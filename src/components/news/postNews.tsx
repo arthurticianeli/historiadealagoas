@@ -19,13 +19,13 @@ export const PostNews = ({ post }: PostNewsProps) => {
                         height={250}
                         className="rounded-md"
                         style={{
-                            width: "auto",
+                            width: "100%",
                             height: "auto",
                         }}
                     />
                 </div>
                 <div className="flex-1">
-                    <h2 className="text-sm font-bold">
+                    <h2 className="text-md text-white font-bold">
                         {post.title.rendered}
                     </h2>
                 </div>

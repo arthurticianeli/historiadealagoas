@@ -84,14 +84,11 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
                     {errors.email && <p className="text-red-500 text-xs mt-1  absolute bottom-[-17]">{errors.email.message}</p>}
                 </div>
 
-                <div>
-                    <Button
-                        type="submit"
-                    >
-                        Publicar comentário
-                    </Button>
-
-                </div>
+                <Button
+                    type="submit"
+                >
+                    Publicar comentário
+                </Button>
             </form>
             {alert && <Alert message={alert.message} type={alert.type} onClose={() => setAlert(null)} />}
         </div>

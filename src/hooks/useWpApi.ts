@@ -23,9 +23,10 @@ export const bannersMock: IBanner[] = [
         imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/HA-no-Instagram.jpg?resize=300%2C150&ssl=1",
     },
     {
-        title: "Banner 4",
+        title: "Banner 3",
         imageUrl: "https://i0.wp.com/www.historiadealagoas.com.br/wp-content/uploads/2025/02/HA-no-Instagram.jpg?resize=300%2C150&ssl=1",
     },
+
 ];
 
 interface GetAllCategoriesParams {
@@ -41,11 +42,6 @@ export const getAllCategories = async ({ excludeNoticias }: GetAllCategoriesPara
     return fetchedCategories;
 };
 
-export const getPostsDestaques = async (perPage: number): Promise<IPost[]> => {
-    const posts = await wp.posts().exclude([1, 3034]).perPage(perPage).orderby('date').order('desc');
-    return posts;
-}
-
 export const getPostsBySlug = async (slug: string): Promise<IPost> => {
     const posts = await wp.posts().slug(slug);
     return posts[0];
@@ -59,7 +55,7 @@ export const getPostsByFilter = async ({ categoryId, page, perPage, excludeCateg
         excludeCategories?: string | number | string[] | number[],
         offset?: number
     }): Promise<IPost[]> => {
-    const posts = await wp.posts().categories(categoryId).excludeCategories(excludeCategories).page(page).perPage(perPage ?? 10).orderby('date').order('desc').offset(offset);
+    const posts = await wp.posts().categories(categoryId).excludeCategories(excludeCategories).page(page ?? 1).perPage(perPage ?? 10).orderby('date').order('desc').offset(offset);
     return posts;
 };
 

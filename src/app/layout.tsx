@@ -4,7 +4,6 @@ import Head from 'next/head'
 import { ReactNode } from 'react'
 import Footer from '../components/layout/footer'
 import Header from '../components/layout/header/header'
-import { IBanner } from '../interfaces/IBanner'
 import './globals.css'
 
 import logoHa from 'public/logo-ha.png'
@@ -21,13 +20,6 @@ const roboto = Roboto({
   weight: ['400', '700'],
   subsets: ['latin'],
 })
-
-export const bannersMock: IBanner[] = [
-  {
-    title: 'Banner 1',
-    imageUrl: 'https://banner.historiadealagoas.com.br/up/Prestacao-Faz-Faz-Faz-120241213121232.gif'
-  },
-]
 
 export default function RootLayout({ children }: { readonly children: ReactNode }) {
   return (

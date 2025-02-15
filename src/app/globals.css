@@ -19,19 +19,11 @@ body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
-
-/* Estilo para links */
-a {
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--accent-hover);
-}
-
-a:hover h2 {
-  color: var(--accent-hover);
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1400px;
+  padding: 0 1rem 0 1rem;
 }
 
 button {

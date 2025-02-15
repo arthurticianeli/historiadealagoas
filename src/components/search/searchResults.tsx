@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import PostList from "src/components/postList/postList";
+import PostList from "src/components/posts/postList";
 import { getSearchByContent, getSearchByTitle } from 'src/hooks/useWpApi';
 import { IPost } from "src/interfaces/IPost";
 

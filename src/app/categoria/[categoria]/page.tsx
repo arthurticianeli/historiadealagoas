@@ -2,7 +2,7 @@
 import { notFound } from "next/navigation";
 import Chip from "src/components/chip/chip";
 import Layout from "src/components/pagesLayout/layout";
-import LoadMorePosts from "src/components/posts/loadMorePosts";
+import LoadMorePosts from "src/components/posts/loadMorePostsCategory";
 import { getAllCategories, getPostsByFilter } from "src/hooks/useWpApi";
 import { ICategory } from "src/interfaces/ICategory";
 

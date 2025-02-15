@@ -10,7 +10,7 @@ import "./postCover.css";
 
 interface PostCardProps {
     post: IPost;
-    categories?: ICategory[]
+    categories: ICategory[];
 }
 
 const PostCover: React.FC<PostCardProps> = ({ post, categories }) => {

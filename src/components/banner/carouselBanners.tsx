@@ -13,15 +13,15 @@ const CarouselBanners: React.FC<CarouselBannersProps> = ({ banners }) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % banners.length);
-        }, 3000); // Muda o slide a cada 3 segundos
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % banners?.length);
+        }, 3000);
 
         return () => clearInterval(interval);
-    }, [banners.length]);
+    }, [banners?.length]);
 
     return (
-        <div className="relative w-full overflow-hidden mb-10">
-            <Banner title={banners[currentIndex].title} imageUrl={banners[currentIndex].imageUrl} />
+        <div className="col-span-4 relative w-full overflow-hidden">
+            <Banner title={banners?.[currentIndex]?.title} imageUrl={banners?.[currentIndex]?.imageUrl} />
         </div>
     );
 };
