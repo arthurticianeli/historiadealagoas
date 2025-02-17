@@ -1,6 +1,7 @@
 import { IComment } from 'src/interfaces/IComment';
 import { ICreateComment } from 'src/interfaces/ICreateComment';
 import { IError } from 'src/interfaces/IError';
+import { bannersMockMaior } from 'src/mocks/bannersMocks';
 import WPAPI from 'wpapi';
 import { IBanner } from '../interfaces/IBanner';
 import { ICategory } from '../interfaces/ICategory';
@@ -95,8 +96,12 @@ export const getSearchByContent = async ({ query, page, perPage }: {
 
 };
 
-export const getBanners = async (): Promise<IBanner[]> => {
+export const getBannersMenores = async (): Promise<IBanner[]> => {
     return bannersMock;
+}
+
+export const getBannersMaiores = async (): Promise<IBanner[]> => {
+    return bannersMockMaior;
 }
 
 export const getComments = async (postId: number): Promise<IComment[]> => {

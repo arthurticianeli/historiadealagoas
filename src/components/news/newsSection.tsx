@@ -11,7 +11,7 @@ const NewsSection: FC = async () => {
     const posts: IPost[] = await getPostsByFilter({ categoryId: 3034, page: 1, perPage: 4 });
 
     return (
-        <div className="col-span-12 bg-red-800 py-4 my-10">
+        <div className="col-span-12 bg-red-800 py-4  my-5 lg:my-10">
             <div className="flex justify-between items-center mb-4">
                 <hr className="flex-grow border-t border-white mr-4" />
                 <Link href={`/categoria/noticias`}>

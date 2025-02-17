@@ -11,7 +11,7 @@ const Header = async () => {
     const categories = await getAllCategories({ excludeNoticias: true });
     return (
         <header
-            className="header h-[200px] 2xl:h-[250px] mb-10"
+            className="header h-[200px] 2xl:h-[250px] mb-5 lg:mb-10"
             style={{
                 backgroundColor: 'var(--main-bg-color)',
                 borderBottom: '4px solid var(--accent)'

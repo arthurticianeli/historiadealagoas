@@ -42,7 +42,7 @@ const LoadMorePostsMain: React.FC<ComponentProps> = ({ categories, initialPosts 
 
     return (
         <>
-            <div className="container grid grid-cols-4 gap-10 mt-10">
+            <div className="container grid grid-cols-4 gap-10  mt-5 lg:mt-10">
                 {posts.map((post) => (
                     <div key={post.id} className="col-span-4 lg:col-span-2">
                         <PostCover post={post} categories={categories} />

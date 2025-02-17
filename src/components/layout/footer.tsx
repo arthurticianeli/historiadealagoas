@@ -5,7 +5,7 @@ import ContactForm from '../contactForm/contactForm';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="py-10 mt-10">
+        <footer className="py-10 mt-5 lg:mt-10">
             <div className="max-w-4xl mx-auto">
                 <div className="px-4 grid grid-cols-1 md:grid-cols-3">
                     {/* Coluna Sobre */}

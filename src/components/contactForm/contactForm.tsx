@@ -11,6 +11,10 @@ const ContactForm: React.FC = () => {
     const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
     const [alert, setAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
+    const EMAILJS_USER_ID = process.env.EMAILJS_USER_ID ?? '';
+    const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID ?? '';
+    const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID ?? '';
+
 
     const validate = () => {
         const newErrors: { name?: string; email?: string } = {};
@@ -42,7 +46,7 @@ const ContactForm: React.FC = () => {
                 message: `Email para cadastro: ${email}\n Nome: ${name}\n--\nEste e-mail foi enviado de um formulário de contato em História de Alagoas (https://www.historiadealagoas.com.br)`
             };
 
-            emailjs.send('service_6lbysim', 'template_147r1ud', templateParams, 'IV0KHpdRyh-VX7TDa')
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_USER_ID)
                 .then((response) => {
                     console.log('SUCCESS!', response.status, response.text);
                     setAlert({ message: 'E-mail enviado com sucesso!', type: 'success' });

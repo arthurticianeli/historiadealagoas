@@ -106,7 +106,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ search }) => {
             )}
             {
                 !loading && posts.length === 0 && (
-                    <div className="flex justify-center items-center my-10">
+                    <div className="flex justify-center items-center  my-5 lg:my-10">
                         <p className="text-gray-700 text-4xl">Nenhum post encontrado para a busca: {search}</p>
                     </div>
                 )

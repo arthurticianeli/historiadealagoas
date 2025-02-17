@@ -5,7 +5,7 @@
     cursor: pointer;
     font-size: 16px;
     padding: 10px 0 10px 0;
-    margin-left: 20px;
+    margin: 0 20px;
 }
 
 .searchIcon:hover {
@@ -15,8 +15,8 @@
 
 .searchInput {
     position: absolute;
-    right: 10;
-    top: 80;
+    right: 10px;
+    top: 60px;
     opacity: 0;
     width: 90vw;
     max-width: 0;
