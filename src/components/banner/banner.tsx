@@ -3,13 +3,13 @@ import React from 'react';
 
 interface BannerProps {
     title: string;
-    imageUrl: string;
+    imageData: string;
 }
 
-const Banner: React.FC<BannerProps> = ({ title, imageUrl }) => {
+const Banner: React.FC<BannerProps> = ({ title, imageData }) => {
     return (
         <Image
-            src={imageUrl}
+            src={imageData}
             alt={title}
             width={800}
             height={100}

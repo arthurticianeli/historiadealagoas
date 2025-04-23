@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import { getBannersMaiores, getBannersMenores } from 'src/hooks/useWpApi';
 import { IBanner } from 'src/interfaces/IBanner';
 import Banner from './banner';
 
@@ -23,13 +22,20 @@ const CarouselBanners: React.FC<CarouselBannersProps> = ({ isSmall = false }) =>
 
     useEffect(() => {
         const fetchBanners = async () => {
+            const response = await fetch(`/api/banners`);
+            const data: IBanner[] = await response.json();
+
             if (isSmall) {
-                const response = await getBannersMenores();
-                setBanners(response);
+                setBanners(data.filter(banner => 
+                    banner.position === "menor-1" || 
+                    banner.position === "menor-2" || 
+                    banner.position === "menor-3" || 
+                    banner.position === "menor-4"
+                ));
                 return;
             }
-            const response = await getBannersMaiores();
-            setBanners(response);
+
+            setBanners(data.filter(banner => banner.position === "topo-1" || banner.position === "topo-2"));
         }
 
         fetchBanners();
@@ -41,7 +47,7 @@ const CarouselBanners: React.FC<CarouselBannersProps> = ({ isSmall = false }) =>
 
     return (
         <div className="col-span-4 relative w-full overflow-hidden">
-            <Banner title={banners?.[currentIndex]?.title} imageUrl={banners?.[currentIndex]?.imageUrl} />
+            <Banner title={banners?.[currentIndex]?.title} imageData={banners?.[currentIndex]?.imageData} />
         </div>
     );
 };

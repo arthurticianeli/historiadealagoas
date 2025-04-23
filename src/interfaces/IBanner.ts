@@ -1,4 +1,6 @@
 export interface IBanner {
+    id?: number;
     title: string;
-    imageUrl: string;
+    imageData: string;
+    position?: string;
 }
