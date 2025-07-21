@@ -10,7 +10,10 @@ const nextConfig: NextConfig = {
     ],
   },
   reactStrictMode: true,
-
+  // Configuração para evitar erros durante o build quando variáveis de ambiente não estão disponíveis
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL ?? '',
+  },
 };
 
 export default nextConfig;

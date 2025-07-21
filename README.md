@@ -20,6 +20,21 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment Variables
+
+This project requires the following environment variables to be set:
+
+1. Copy the `.env.example` file to `.env.local`:
+```bash
+cp .env.example .env.local
+```
+
+2. Update the values in `.env.local`:
+- `NEXT_PUBLIC_API_URL`: The URL of your WordPress API endpoint (e.g., `https://your-wordpress-site.com/wp-json`)
+- `DATABASE_URL`: Your database connection string for Prisma
+
+**Important for Vercel deployment**: Make sure to set these environment variables in your Vercel project settings.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

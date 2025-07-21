@@ -12,12 +12,12 @@ async function PostPage({ params }: { readonly params: Promise<{ readonly slug: 
         notFound();
     }
 
-    const category = await getCategoryById(post?.categories[0]);
+    const category = await getCategoryById(post.categories[0]);
 
     return (
         <div className='flex flex-col max-w-[900px] m-auto'>
             <Layout>
-                <Post post={post} category={category.name} />
+                <Post post={post} category={category?.name ?? 'Sem categoria'} />
             </Layout>
         </div>
     );

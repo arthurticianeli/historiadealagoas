@@ -15,11 +15,11 @@ const BannerGrande: React.FC<BannerGrandeProps> = ({ position }) => {
         const fetchBanners = async () => {
             const response = await fetch(`/api/banners`);
             const data: IBanner[] = await response.json();
-            setBanner(data.find(banner => banner.position === position) || ({} as IBanner));
+            setBanner(data.find(banner => banner.position === position) ?? ({} as IBanner));
         }
 
         fetchBanners();
-    }, []);
+    }, [position]);
 
 
     return (
