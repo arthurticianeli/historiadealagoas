@@ -10,6 +10,11 @@ import { PostNews } from "./postNews";
 const NewsSection: FC = async () => {
     const posts: IPost[] = await getPostsByFilter({ categoryId: 3034, page: 1, perPage: 4 });
 
+    // Se não há posts, não renderiza a seção
+    if (!posts || posts.length === 0) {
+        return null;
+    }
+
     return (
         <div className="col-span-12 bg-red-800 py-4 my-5 lg:my-10">
             <div className="flex justify-between items-center mb-4">

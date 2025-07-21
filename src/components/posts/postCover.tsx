@@ -14,7 +14,12 @@ interface PostCardProps {
 }
 
 const PostCover: React.FC<PostCardProps> = ({ post, categories }) => {
-    const category = categories?.find(category => category.id === post.categories[0])?.name ?? "";
+    // Proteção contra post undefined
+    if (!post) {
+        return <div className="w-full h-48 bg-gray-200 rounded-md flex items-center justify-center text-gray-500">Post não encontrado</div>;
+    }
+    
+    const category = categories?.find(category => category.id === post.categories?.[0])?.name ?? "";
     const options = {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         replace: (domNode: any) => {
@@ -42,9 +47,9 @@ const PostCover: React.FC<PostCardProps> = ({ post, categories }) => {
                 </div>
             }
             <h2 className='text-2xl font-bold mt-2'>
-                {parse(post.title.rendered)}
+                {parse(post.title?.rendered ?? '')}
             </h2>
-            <div className="text-gray-600 leading-relaxed">{parse(post.excerpt.rendered, options)}</div>
+            <div className="text-gray-600 leading-relaxed">{parse(post.excerpt?.rendered ?? '', options)}</div>
         </Link>
     );
 };

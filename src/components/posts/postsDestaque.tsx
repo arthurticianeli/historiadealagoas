@@ -8,6 +8,12 @@ import "./postCover.css";
 const PostsDestaque: React.FC = async () => {
     const posts = await getPostsByFilter({});
     const categories = await getAllCategories();
+    
+    // Se não há posts suficientes, não renderiza o componente
+    if (!posts || posts.length < 6) {
+        return <div className="container col-span-4 mb-4 text-center text-gray-500">Carregando posts...</div>;
+    }
+    
     return (
         <div className="container col-span-4 mb-4 grid grid-cols-4 gap-10">
             <div className="col-span-4 lg:col-span-3">

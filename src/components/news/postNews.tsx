@@ -8,6 +8,11 @@ interface PostNewsProps {
 
 
 export const PostNews = ({ post }: PostNewsProps) => {
+    // Proteção contra post undefined
+    if (!post) {
+        return null;
+    }
+    
     return (
         <Link href={`/${post.slug}`}>
             <div className="flex flex-col gap-2">
@@ -26,7 +31,7 @@ export const PostNews = ({ post }: PostNewsProps) => {
                 </div>
                 <div className="flex-1">
                     <h2 className="text-md text-white font-bold">
-                        {post.title.rendered}
+                        {post.title?.rendered}
                     </h2>
                 </div>
             </div>
