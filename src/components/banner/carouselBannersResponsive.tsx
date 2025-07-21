@@ -11,16 +11,25 @@ const CarouselBannersResponsive: React.FC = () => {
 
     useEffect(() => {
         const fetchBanners = async () => {
-            const response = await fetch(`/api/banners`); // Use apiUrl como base
-            const data: IBanner[] = await response.json();
+            try {
+                const response = await fetch(`/api/banners`);
+                if (!response.ok) {
+                    console.error('Erro ao buscar banners:', response.status);
+                    return;
+                }
+                const data: IBanner[] = await response.json();
 
-            setBanners(
-                data.filter(banner => 
-                    banner.position === "menor-1" || 
-                    banner.position === "menor-2" || 
-                    banner.position === "menor-3" || 
-                    banner.position === "menor-4"
-                ))
+                setBanners(
+                    data.filter(banner => 
+                        banner.position === "menor-1" || 
+                        banner.position === "menor-2" || 
+                        banner.position === "menor-3" || 
+                        banner.position === "menor-4"
+                    ))
+            } catch (error) {
+                console.error('Erro ao buscar banners:', error);
+                setBanners([]);
+            }
         }
 
         fetchBanners();

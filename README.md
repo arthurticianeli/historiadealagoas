@@ -35,6 +35,28 @@ cp .env.example .env.local
 
 **Important for Vercel deployment**: Make sure to set these environment variables in your Vercel project settings.
 
+## Troubleshooting Deploy Issues
+
+### Common Build Errors:
+
+1. **"options hash must contain an API endpoint URL string"**
+   - Cause: `NEXT_PUBLIC_API_URL` not set in Vercel environment variables
+   - Solution: Add the environment variable in Vercel dashboard
+
+2. **"Cannot read properties of undefined (reading 'slug')"**
+   - Cause: Components trying to access properties of undefined posts/data
+   - Solution: The code now includes proper error handling and fallbacks
+
+3. **"Internal Server Error" on /api/banners**
+   - Cause: Database connection issues (DATABASE_URL not set or invalid)
+   - Solution: Ensure DATABASE_URL is properly configured in Vercel
+
+### Database Setup:
+If you're using a database, make sure to:
+1. Set up your database (PostgreSQL recommended)
+2. Configure `DATABASE_URL` in environment variables
+3. Run Prisma migrations if needed
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

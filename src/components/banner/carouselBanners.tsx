@@ -22,24 +22,33 @@ const CarouselBanners: React.FC<CarouselBannersProps> = ({ isSmall = false }) =>
 
     useEffect(() => {
         const fetchBanners = async () => {
-            const response = await fetch(`/api/banners`);
-            const data: IBanner[] = await response.json();
+            try {
+                const response = await fetch(`/api/banners`);
+                if (!response.ok) {
+                    console.error('Erro ao buscar banners:', response.status);
+                    return;
+                }
+                const data: IBanner[] = await response.json();
 
-            if (isSmall) {
-                setBanners(data.filter(banner => 
-                    banner.position === "menor-1" || 
-                    banner.position === "menor-2" || 
-                    banner.position === "menor-3" || 
-                    banner.position === "menor-4"
-                ));
-                return;
+                if (isSmall) {
+                    setBanners(data.filter(banner => 
+                        banner.position === "menor-1" || 
+                        banner.position === "menor-2" || 
+                        banner.position === "menor-3" || 
+                        banner.position === "menor-4"
+                    ));
+                    return;
+                }
+
+                setBanners(data.filter(banner => banner.position === "topo-1" || banner.position === "topo-2"));
+            } catch (error) {
+                console.error('Erro ao buscar banners:', error);
+                setBanners([]);
             }
-
-            setBanners(data.filter(banner => banner.position === "topo-1" || banner.position === "topo-2"));
         }
 
         fetchBanners();
-    }, []);
+    }, [isSmall]);
 
     if (!banners.length) {
         return null;

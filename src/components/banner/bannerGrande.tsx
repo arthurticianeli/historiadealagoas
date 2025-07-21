@@ -13,9 +13,18 @@ const BannerGrande: React.FC<BannerGrandeProps> = ({ position }) => {
 
     useEffect(() => {
         const fetchBanners = async () => {
-            const response = await fetch(`/api/banners`);
-            const data: IBanner[] = await response.json();
-            setBanner(data.find(banner => banner.position === position) ?? ({} as IBanner));
+            try {
+                const response = await fetch(`/api/banners`);
+                if (!response.ok) {
+                    console.error('Erro ao buscar banners:', response.status);
+                    return;
+                }
+                const data: IBanner[] = await response.json();
+                setBanner(data.find(banner => banner.position === position) ?? ({} as IBanner));
+            } catch (error) {
+                console.error('Erro ao buscar banners:', error);
+                // Se há erro, não define banner (mantém o estado inicial vazio)
+            }
         }
 
         fetchBanners();
