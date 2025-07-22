@@ -5,8 +5,6 @@ export default async function Home() {
   return (
     <>
       <PostsDestaque />
-      {/* <BannerGrande position="topo-2" /> */}
-      {/* <NewsSection /> */}
       <PostsMainList />
     </>
   );

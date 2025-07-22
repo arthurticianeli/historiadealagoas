@@ -35,10 +35,10 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
       <html lang="en" className={roboto.className}>
         <body>
           <Header />
-           <div className='container block lg:flex lg:gap-4 mb-5 lg:mb-10'>
-                        <BannerGrande position="topo-1" />
-                        <BannerGrande position="topo-2" />
-      </div>
+          <div className='container block lg:flex lg:gap-4 mb-5 lg:mb-10'>
+            <BannerGrande position="topo-1" />
+            <BannerGrande position="topo-2" />
+          </div>
           <main>
             {children}
           </main>

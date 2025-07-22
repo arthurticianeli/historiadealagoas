@@ -10,7 +10,7 @@ const Banner: React.FC<BannerProps> = ({ title, imageData }) => {
     return (
         <Image
             src={imageData}
-            alt={title}
+            alt={title || "Banner Image"}
             width={800}
             height={100}
             className="w-full mx-auto"

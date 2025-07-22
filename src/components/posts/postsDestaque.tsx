@@ -52,7 +52,6 @@ const PostsDestaque: React.FC = async () => {
                 </div >
             </div>
             <NewsSection />
-
         </div >
     );
 };
