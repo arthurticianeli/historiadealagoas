@@ -32,7 +32,7 @@ const BannerGrande: React.FC<BannerGrandeProps> = ({ position }) => {
 
 
     return (
-        <div className="col-span-4 relative w-full overflow-hidden">
+        <div className="col-span-4 my-2 lg:my-0 relative w-full overflow-hidden">
             <div className='max-w-[1000px] mx-auto'>
                 {banner.imageData ? (
                     <Banner title={banner.title} imageData={banner.imageData} />
