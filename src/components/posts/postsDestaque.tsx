@@ -13,7 +13,6 @@ const PostsDestaque: React.FC = async () => {
     let categories: ICategory[] = [];
 
     try {
-
         posts = await getPostsByFilter({});
         categories = await getAllCategories();
     } catch (error) {
@@ -24,7 +23,6 @@ const PostsDestaque: React.FC = async () => {
 
     // Se não há posts suficientes, renderiza mensagem informativa
     if (!posts || posts.length < 6) {
-        console.log('PostsDestaque: Posts insuficientes, renderizando fallback');
         return (
             <div className="container col-span-4 mb-4 text-center text-gray-500">
                 <div className="p-4 bg-yellow-100 border border-yellow-400 rounded">
@@ -36,23 +34,26 @@ const PostsDestaque: React.FC = async () => {
     }
 
     return (
-        <div className="container col-span-4 mb-4 grid grid-cols-4 gap-10">
-            <div className="col-span-4 lg:col-span-3">
-                <PostCover post={posts[0]} categories={categories} />
-                <div className="col-span-4 grid grid-cols-3 gap-10 mt-5">
-                    <div className="col-span-3 lg:col-span-1">
-                        <PostCover post={posts[1]} categories={categories} />
-                    </div>
-                    <div className="col-span-3 lg:col-span-1">
-                        <PostCover post={posts[2]} categories={categories} />
-                    </div>
-                    <div className="col-span-3 lg:col-span-1">
-                        <PostCover post={posts[3]} categories={categories} />
-                    </div>
-                </div >
+        <>
+            <div className="container col-span-4 mb-4 grid grid-cols-4 gap-10">
+                <div className="col-span-4 lg:col-span-3">
+                    <PostCover post={posts[0]} categories={categories} />
+                    <div className="col-span-4 grid grid-cols-3 gap-10 mt-5">
+                        <div className="col-span-3 lg:col-span-1">
+                            <PostCover post={posts[1]} categories={categories} />
+                        </div>
+                        <div className="col-span-3 lg:col-span-1">
+                            <PostCover post={posts[2]} categories={categories} />
+                        </div>
+                        <div className="col-span-3 lg:col-span-1">
+                            <PostCover post={posts[3]} categories={categories} />
+                        </div>
+                    </div >
+                </div>
+                <NewsSection />
             </div>
-            <NewsSection />
-        </div >
+            
+        </>
     );
 };
 

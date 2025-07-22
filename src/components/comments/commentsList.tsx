@@ -1,5 +1,7 @@
 
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { getComments } from 'src/hooks/useWpApi';
 import { IComment } from 'src/interfaces/IComment';
 import Comments from './comments';
@@ -24,9 +26,35 @@ const organizeComments = (comments: IComment[]) => {
     }));
 };
 
-const CommentsList: React.FC<CommentListProps> = async ({ postId }) => {
-    const comments = await getComments(postId);
+const CommentsList: React.FC<CommentListProps> = ({ postId }) => {
+    const [comments, setComments] = useState<IComment[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchComments = async () => {
+            try {
+                const fetchedComments = await getComments(postId);
+                setComments(fetchedComments);
+            } catch (error) {
+                console.error('Erro ao carregar comentários:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchComments();
+    }, [postId]);
+
     const organizedComments = organizeComments(comments);
+
+    if (loading) {
+        return (
+            <div className="p-4">
+                <h2 className="text-2xl font-bold mb-4">Comentários</h2>
+                <p>Carregando comentários...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="p-4">

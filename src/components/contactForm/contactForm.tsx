@@ -70,7 +70,7 @@ const ContactForm: React.FC = () => {
                         onChange={(e) => setName(e.target.value)}
                         className="p-2 rounded w-full"
                     />
-                    {errors.name && <span className="text-red-500 text-sm absolute bottom-[-13] left-0">{errors.name}</span>}
+                    {errors.name && <span className="text-red-800 text-sm absolute bottom-[-13] left-0">{errors.name}</span>}
                 </div>
                 <div className="relative">
                     <input
@@ -80,7 +80,7 @@ const ContactForm: React.FC = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         className="p-2 rounded w-full"
                     />
-                    {errors.email && <span className="text-red-500 text-sm absolute bottom-[-13] left-0">{errors.email}</span>}
+                    {errors.email && <span className="text-red-800 text-sm absolute bottom-[-13] left-0">{errors.email}</span>}
                 </div>
                 <Button
                     type="submit"

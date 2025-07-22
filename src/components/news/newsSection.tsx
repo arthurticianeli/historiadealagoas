@@ -14,7 +14,7 @@ const NewsSection: FC = async () => {
     if (!posts || posts.length === 0) {
         return null;
     }    return (
-        <div className="col-span-4 lg:col-span-1 bg-red-800 py-4">
+        <div className="col-span-4 lg:col-span-1 bg-red-800 py-4 rounded-md">
             <div className="mb-4 px-4">
                 <Link href={`/categoria/noticias`}>
                     <h1 className="font-bold text-2xl text-white uppercase">NOTÍCIAS</h1>
