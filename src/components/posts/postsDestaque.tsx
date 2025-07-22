@@ -3,7 +3,6 @@ import React from 'react';
 import { getAllCategories, getPostsByFilter } from 'src/hooks/useWpApi';
 import { IPost } from 'src/interfaces/IPost';
 import { ICategory } from 'src/interfaces/ICategory';
-import BannerGrande from '../banner/bannerGrande';
 import PostCover from './postCover';
 import "./postCover.css";
 import NewsSection from '../news/newsSection';
