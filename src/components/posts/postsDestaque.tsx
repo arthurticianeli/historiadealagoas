@@ -1,19 +1,47 @@
 
 import React from 'react';
 import { getAllCategories, getPostsByFilter } from 'src/hooks/useWpApi';
+import { IPost } from 'src/interfaces/IPost';
+import { ICategory } from 'src/interfaces/ICategory';
 import BannerGrande from '../banner/bannerGrande';
 import PostCover from './postCover';
 import "./postCover.css";
 
 const PostsDestaque: React.FC = async () => {
-    const posts = await getPostsByFilter({});
-    const categories = await getAllCategories();
+    console.log('PostsDestaque: Iniciando componente');
+    console.log('PostsDestaque: NEXT_PUBLIC_API_URL =', process.env.NEXT_PUBLIC_API_URL);
     
-    // Se não há posts suficientes, não renderiza o componente
-    if (!posts || posts.length < 6) {
-        return <div className="container col-span-4 mb-4 text-center text-gray-500">Carregando posts...</div>;
+    let posts: IPost[] = [];
+    let categories: ICategory[] = [];
+    
+    try {
+        console.log('PostsDestaque: Buscando posts...');
+        posts = await getPostsByFilter({});
+        console.log('PostsDestaque: Posts encontrados:', posts?.length ?? 0);
+        
+        console.log('PostsDestaque: Buscando categorias...');
+        categories = await getAllCategories();
+        console.log('PostsDestaque: Categorias encontradas:', categories?.length ?? 0);
+    } catch (error) {
+        console.error('PostsDestaque: Erro ao buscar dados:', error);
+        posts = [];
+        categories = [];
     }
     
+    // Se não há posts suficientes, renderiza mensagem informativa
+    if (!posts || posts.length < 6) {
+        console.log('PostsDestaque: Posts insuficientes, renderizando fallback');
+        return (
+            <div className="container col-span-4 mb-4 text-center text-gray-500">
+                <div className="p-4 bg-yellow-100 border border-yellow-400 rounded">
+                    <p>Posts em carregamento... ({posts?.length ?? 0} de 6 necessários)</p>
+                    <p className="text-sm mt-2">API URL: {process.env.NEXT_PUBLIC_API_URL ?? 'Não definida'}</p>
+                </div>
+            </div>
+        );
+    }
+    
+    console.log('PostsDestaque: Renderizando componente completo');
     return (
         <div className="container col-span-4 mb-4 grid grid-cols-4 gap-10">
             <div className="col-span-4 lg:col-span-3">
