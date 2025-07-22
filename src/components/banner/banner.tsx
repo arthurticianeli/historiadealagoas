@@ -7,6 +7,11 @@ interface BannerProps {
 }
 
 const Banner: React.FC<BannerProps> = ({ title, imageData }) => {
+
+    if(!imageData) {
+        return null;
+    }
+    
     return (
         <Image
             src={imageData}
