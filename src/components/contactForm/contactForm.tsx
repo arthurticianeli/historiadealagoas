@@ -47,8 +47,7 @@ const ContactForm: React.FC = () => {
             };
 
             emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_USER_ID)
-                .then((response) => {
-                    console.log('SUCCESS!', response.status, response.text);
+                .then(() => {
                     setAlert({ message: 'E-mail enviado com sucesso!', type: 'success' });
                 }, (error) => {
                     console.log('FAILED...', error);

@@ -43,7 +43,11 @@ const CarouselBannersResponsive: React.FC = () => {
             <div className="hidden sm:flex flex-no-wrap col-span-12 justify-center items-center gap-4">
             {banners.map((banner, index) => (
                 <div key={`banner-${index}`} className="flex justify-center items-center w-full sm:w-1/4">
-                    <Banner title={banner.title} imageData={banner.imageData} />
+                    <Banner 
+                        title={banner.title} 
+                        imageData={banner.imageData} 
+                        url={banner.url}
+                    />
                 </div>
             ))}
         </div>

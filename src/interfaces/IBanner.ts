@@ -3,4 +3,9 @@ export interface IBanner {
     title: string;
     imageData: string;
     position?: string;
+    url?: string;
+    displayDays?: string; // Dias da semana separados por vírgula
+    active?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
 }

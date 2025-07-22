@@ -1,18 +1,20 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 interface BannerProps {
     title: string;
     imageData: string;
+    url?: string;
 }
 
-const Banner: React.FC<BannerProps> = ({ title, imageData }) => {
+const Banner: React.FC<BannerProps> = ({ title, imageData, url }) => {
 
-    if(!imageData) {
+    if (!imageData) {
         return null;
     }
-    
-    return (
+
+    const bannerImage = (
         <Image
             src={imageData}
             alt={title || "Banner Image"}
@@ -23,6 +25,16 @@ const Banner: React.FC<BannerProps> = ({ title, imageData }) => {
                 height: "auto",
             }} />
     );
+
+    if (url) {
+        return (
+            <Link href={url} target="_blank" rel="noopener noreferrer">
+                {bannerImage}
+            </Link>
+        );
+    }
+
+    return bannerImage;
 };
 
 export default Banner;

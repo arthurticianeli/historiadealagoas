@@ -1,6 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
+interface BannerCreateData {
+  title: string;
+  imageData: string;
+  position: string;
+  active: boolean;
+  url?: string | null;
+}
+
 const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -22,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       case "POST": {
         try {
-          const { title, data } = req.body;
+          const { title, data, url } = req.body;
         
           if (!title || !data) {
             return res.status(400).json({ error: "Campos obrigatórios ausentes" });
@@ -38,13 +46,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }
         
           // Cria um novo banner
+          const bannerData: BannerCreateData = {
+            title,
+            imageData: data,
+            position: "", // Default value, adjust as needed
+            active: false, // Default value, adjust as needed
+          };
+
+          if (url) {
+            bannerData.url = url;
+          }
+
           const newBanner = await prisma.banner.create({
-            data: {
-              title,
-              imageData: data,
-              position: "", // Default value, adjust as needed
-              active: false, // Default value, adjust as needed
-            },
+            data: bannerData,
           });
         
           return res.status(201).json(newBanner);

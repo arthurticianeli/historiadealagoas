@@ -23,7 +23,6 @@ function Login() {
     
     const onSubmit = async (data: IUser) => {
         try {
-            console.log('Login: Fazendo requisição para /api/login');
             const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: {
@@ -32,16 +31,11 @@ function Login() {
                 body: JSON.stringify(data),
             });
 
-            console.log('Login: Status da resposta:', response.status);
-            console.log('Login: Response OK:', response.ok);
-
             if (response.ok) {
                 const result = await response.json();
-                console.log('Login: Login bem-sucedido');
                 localStorage.setItem('token', result.token); // Armazena o token no localStorage
                 router.push('/painel'); // Redireciona para a rota /painel
             } else {
-                console.log('Login: Erro na resposta');
                 // Verificar se a resposta tem conteúdo JSON válido
                 const contentType = response.headers.get('content-type');
                 if (contentType?.includes('application/json')) {

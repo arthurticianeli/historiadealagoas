@@ -15,11 +15,13 @@ model User {
 }
 
 model Banner {
-  id        Int      @id @default(autoincrement())
-  title     String   @unique
-  imageData String
-  position  String
-  active    Boolean
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
+  imageData   String
+  position    String
+  active      Boolean
+  url         String?
+  displayDays String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

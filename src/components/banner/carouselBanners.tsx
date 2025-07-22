@@ -56,7 +56,11 @@ const CarouselBanners: React.FC<CarouselBannersProps> = ({ isSmall = false }) =>
 
     return (
         <div className="col-span-4 relative w-full overflow-hidden">
-            <Banner title={banners?.[currentIndex]?.title} imageData={banners?.[currentIndex]?.imageData} />
+            <Banner 
+                title={banners?.[currentIndex]?.title} 
+                imageData={banners?.[currentIndex]?.imageData} 
+                url={banners?.[currentIndex]?.url}
+            />
         </div>
     );
 };
