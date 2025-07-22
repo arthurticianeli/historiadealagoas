@@ -4,16 +4,29 @@ import prisma from "../../libs/prisma";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const method = req.method;
 
+  // Log environment info for debugging
+  console.log("Environment:", process.env.NODE_ENV);
+  console.log("Database URL exists:", !!process.env.DATABASE_URL);
+
   try {
     switch (method) {
       case "GET": {
         // Retorna todos os banners
         try {
+          console.log("Tentando conectar ao banco de dados...");
           const banners = await prisma.banner.findMany();
+          console.log("Banners encontrados:", banners.length);
           return res.status(200).json(banners);
         } catch (error) {
           console.error("Erro ao buscar banners:", error);
-          // Retorna array vazio em caso de erro de banco
+          // Retorna mais detalhes do erro em desenvolvimento
+          if (process.env.NODE_ENV === 'development') {
+            return res.status(500).json({ 
+              error: "Erro ao buscar banners", 
+              details: error instanceof Error ? error.message : String(error)
+            });
+          }
+          // Retorna array vazio em caso de erro de banco em produção
           return res.status(200).json([]);
         }
       }
@@ -113,6 +126,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   } catch (error) {
     console.error("Erro geral na API de banners:", error);
+    // Em desenvolvimento, retorna detalhes do erro
+    if (process.env.NODE_ENV === 'development') {
+      return res.status(500).json({ 
+        error: "Erro interno do servidor", 
+        details: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined
+      });
+    }
     return res.status(500).json({ error: "Erro interno do servidor" });
   }
 }

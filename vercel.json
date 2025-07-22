@@ -1,0 +1,11 @@
+{
+  "buildCommand": "prisma generate && npm run build",
+  "env": {
+    "PRISMA_CLI_BINARY_TARGETS": "rhel-openssl-1.0.x"
+  },
+  "functions": {
+    "pages/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  }
+}
