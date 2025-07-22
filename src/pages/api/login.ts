@@ -17,7 +17,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     
     if (!SECRET_KEY) {
         console.error('Login API: SECRET_KEY is not defined');
-        return res.status(500).json({ message: 'Configuração do servidor inválida' });
+        return res.status(500).json({ 
+            message: 'Configuração do servidor inválida',
+            error: 'SECRET_KEY não configurada nas variáveis de ambiente'
+        });
     }
     
     const { email, password } = req.body;
