@@ -105,7 +105,9 @@ const Post: React.FC<PostCardProps> = ({ post, category }) => {
                     </a>
                 )
                 }
+                <div className="text-right italic text-sm">
                 <WpApiParser content={mediaSubtitle} />
+                </div>
             </div>
             <ShareButtons postUrl={postUrl} postTitle={post?.title?.rendered || ''} />
             <div className="m-auto">

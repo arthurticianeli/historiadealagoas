@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
         <body>
           <Header />
           <div className='container block lg:flex lg:gap-4 mb-5 lg:mb-10'>
-            <PublicBanners position="topo-1" />
+            <PublicBanners position="topo-1" className='mb-2 lg:mb-0' />
             <PublicBanners position="topo-2" />
           </div>
           <main>

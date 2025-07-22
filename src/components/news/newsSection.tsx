@@ -14,17 +14,17 @@ const NewsSection: FC = async () => {
     if (!posts || posts.length === 0) {
         return null;
     }    return (
-        <div className="col-span-4 lg:col-span-1 bg-red-800 py-4 rounded-md">
-            <div className="mb-4 px-4">
+        <div className="col-span-4 lg:col-span-1 bg-red-800 rounded-md px-10 pt-5">
+            <div className="mb-4">
                 <Link href={`/categoria/noticias`}>
-                    <h1 className="font-bold text-2xl text-white uppercase">NOTÍCIAS</h1>
+                    <h1 className="font-bold text-xl text-white uppercase">NOTÍCIAS</h1>
                 </Link>
                 <hr className="flex-grow border-t border-white" />
             </div>
-            <div className="lg:hidden grid grid-cols-1 gap-4 px-4">
+            <div className="lg:hidden grid grid-cols-1 gap-4">
                 <Carousel posts={posts} />
             </div>
-            <div className="hidden lg:grid grid-cols-1 gap-4 px-4">
+            <div className="hidden lg:grid grid-cols-1 gap-4">
                 {posts.map(post =>
                     <div key={`post-${post.id}`}>
                         <PostNews post={post} />

@@ -42,7 +42,7 @@ const LoadMorePostsMain: React.FC<ComponentProps> = ({ categories, initialPosts 
 
     return (
         <>
-            <div className="container grid grid-cols-4 gap-10  mt-5 lg:mt-10">
+            <div className="container grid grid-cols-4 gap-5 mt-5 lg:mt-10">
                 {posts.map((post) => (
                     <div key={post.id} className="col-span-4 lg:col-span-2">
                         <PostCover post={post} categories={categories} />
@@ -60,7 +60,7 @@ const LoadMorePostsMain: React.FC<ComponentProps> = ({ categories, initialPosts 
                 </div>
             )}
             {!noMorePosts && !loading && (
-                <div className="flex justify-center items-center mt-4">
+                <div className="flex justify-center items-center mt-5 lg:mt-10">
                     <Button type='button' onClick={loadMorePosts} className="btn btn-primary">Mostrar Mais</Button>
                 </div>
             )}

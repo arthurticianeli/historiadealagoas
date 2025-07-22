@@ -30,7 +30,7 @@ export const PostNews = ({ post }: PostNewsProps) => {
                     />
                 </div>
                 <div className="flex-1">
-                    <h2 className="text-md text-white font-bold">
+                    <h2 className="text-md text-white font-bold leading-5 lg:leading-5">
                         {post.title?.rendered}
                     </h2>
                 </div>

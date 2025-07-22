@@ -1,9 +1,7 @@
 .wp-caption-text {
-    font-size: 16px;
+    font-size: 12px;
     font-style: italic;
-    margin-top: 0.5em;
     text-align: right;
-    margin-left: 20px;
 }
 
 .wp-caption {

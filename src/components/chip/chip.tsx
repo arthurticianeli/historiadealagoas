@@ -8,7 +8,7 @@ interface ChipProps {
 
 function Chip({ category, small }: ChipProps) {
     return (
-        <span className={`chip uppercase ${small ? "text-xs" : "text-lg"} mt-3`}>
+        <span className={`chip uppercase mt-3`} style={{ fontSize: small ? '0.75rem' : '0.875rem' }}>
             {category}
         </span>
     )

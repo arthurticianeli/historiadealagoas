@@ -34,11 +34,11 @@ const PostsDestaque: React.FC = async () => {
     }
 
     return (
-        <>
-            <div className="container col-span-4 mb-4 grid grid-cols-4 gap-10">
-                <div className="col-span-4 lg:col-span-3">
+     
+            <div className="container col-span-4 grid grid-cols-4">
+                <div className="col-span-4 lg:col-span-3 bg-gray-100 rounded-md p-5 lg:p-10 pb-5">
                     <PostCover post={posts[0]} categories={categories} />
-                    <div className="col-span-4 grid grid-cols-3 gap-10 mt-5">
+                    <div className="col-span-4 grid grid-cols-3 gap-5 mt-6">
                         <div className="col-span-3 lg:col-span-1">
                             <PostCover post={posts[1]} categories={categories} />
                         </div>
@@ -52,8 +52,7 @@ const PostsDestaque: React.FC = async () => {
                 </div>
                 <NewsSection />
             </div>
-            
-        </>
+  
     );
 };
 

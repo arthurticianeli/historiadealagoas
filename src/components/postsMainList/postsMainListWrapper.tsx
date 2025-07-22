@@ -11,7 +11,7 @@ interface PostsMainListWrapperProps {
 
 const PostsMainListWrapper: React.FC<PostsMainListWrapperProps> = ({ categories, initialPosts }) => {
 
-    if (!initialPosts || initialPosts.length <= 6) {
+    if (!initialPosts || initialPosts.length <= 4) {
         return (
             <div>
                 <div className="p-4 bg-blue-100 border border-blue-400 rounded mb-4">
@@ -22,9 +22,7 @@ const PostsMainListWrapper: React.FC<PostsMainListWrapperProps> = ({ categories,
     }
 
     return (
-        <div>
-            <LoadMorePostsMain categories={categories} initialPosts={initialPosts.slice(6)} />
-        </div>
+        <LoadMorePostsMain categories={categories} initialPosts={initialPosts.slice(4)} />
     );
 };
 

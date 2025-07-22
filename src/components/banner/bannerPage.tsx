@@ -235,6 +235,7 @@ function BannersPage() {
             <form onSubmit={handleUpload} className="mb-8 flex flex-col items-center">
                 <input
                     type="file"
+                    accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
                     onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
                     className="mb-4 p-2 border border-gray-300 rounded-lg"
                 />
