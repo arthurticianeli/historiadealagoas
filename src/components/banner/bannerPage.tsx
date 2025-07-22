@@ -175,7 +175,7 @@ function BannersPage() {
         setSelectedBanner(null);
     };
 
-    const handleSaveConfig = async (updatedBanner: IBanner) => {
+    const handleSaveConfig = async (updatedBanner: Partial<IBanner>) => {
         try {
             await fetch("/api/banners", {
                 method: "PATCH",
