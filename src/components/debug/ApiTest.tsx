@@ -74,6 +74,21 @@ export default function ApiTest() {
         <strong>Status:</strong> {getStatus()}
       </div>
 
+      {!apiUrl || apiUrl === 'Não definida' ? (
+        <div style={{ marginBottom: '15px', padding: '10px', backgroundColor: '#fee', border: '1px solid #f00', borderRadius: '4px' }}>
+          <h3>🚨 Problema Identificado!</h3>
+          <p>A variável de ambiente <code>NEXT_PUBLIC_API_URL</code> não está configurada no Vercel.</p>
+          <p><strong>Para corrigir:</strong></p>
+          <ol>
+            <li>Acesse o painel do Vercel → Projeto → Settings → Environment Variables</li>
+            <li>Adicione: <code>NEXT_PUBLIC_API_URL</code></li>
+            <li>Valor: <code>https://www.historiadealagoas.com.br/wp-json</code></li>
+            <li>Selecione todos os ambientes (Production, Preview, Development)</li>
+            <li>Faça um re-deploy</li>
+          </ol>
+        </div>
+      ) : null}
+
       {posts && (
         <div style={{ marginBottom: '15px' }}>
           <strong>Posts encontrados:</strong> {posts.length}

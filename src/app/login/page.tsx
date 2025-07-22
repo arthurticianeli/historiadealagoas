@@ -22,21 +22,39 @@ function Login() {
     const router = useRouter();
     
     const onSubmit = async (data: IUser) => {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
+        try {
+            console.log('Login: Fazendo requisição para /api/login');
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
 
-        if (response.ok) {
-            const result = await response.json();
-            localStorage.setItem('token', result.token); // Armazena o token no localStorage
-            router.push('/painel'); // Redireciona para a rota /painel
-        } else {
-            const result = await response.json();
-            setErrorMessage(result.message);
+            console.log('Login: Status da resposta:', response.status);
+            console.log('Login: Response OK:', response.ok);
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Login: Login bem-sucedido');
+                localStorage.setItem('token', result.token); // Armazena o token no localStorage
+                router.push('/painel'); // Redireciona para a rota /painel
+            } else {
+                console.log('Login: Erro na resposta');
+                // Verificar se a resposta tem conteúdo JSON válido
+                const contentType = response.headers.get('content-type');
+                if (contentType?.includes('application/json')) {
+                    const result = await response.json();
+                    setErrorMessage(result.message ?? 'Erro desconhecido');
+                } else {
+                    // Se não for JSON, mostrar o status HTTP
+                    setErrorMessage(`Erro ${response.status}: ${response.statusText}`);
+                }
+            }
+        } catch (error) {
+            console.error('Login: Erro de rede:', error);
+            setErrorMessage('Erro de conexão. Tente novamente.');
         }
     };
 
