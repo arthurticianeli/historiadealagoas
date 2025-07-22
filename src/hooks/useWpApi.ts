@@ -7,11 +7,6 @@ import { IPost } from '../interfaces/IPost';
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-// Validar se apiUrl existe antes de inicializar o WPAPI
-if (!apiUrl) {
-    console.warn('NEXT_PUBLIC_API_URL não foi definida. Algumas funcionalidades podem não funcionar.');
-}
-
 const wp = apiUrl ? new WPAPI({ endpoint: apiUrl }) : null;
 
 interface GetAllCategoriesParams {
@@ -20,7 +15,6 @@ interface GetAllCategoriesParams {
 
 export const getAllCategories = async ({ excludeNoticias }: GetAllCategoriesParams = {}): Promise<ICategory[]> => {
     if (!wp) {
-        console.warn('WPAPI não foi inicializado. Retornando array vazio.');
         return [];
     }
     
@@ -34,7 +28,6 @@ export const getAllCategories = async ({ excludeNoticias }: GetAllCategoriesPara
 
 export const getPostsBySlug = async (slug: string): Promise<IPost | null> => {
     if (!wp) {
-        console.warn('WPAPI não foi inicializado. Retornando null.');
         return null;
     }
     
@@ -51,7 +44,6 @@ export const getPostsByFilter = async ({ categoryId, page, perPage, excludeCateg
         offset?: number
     }): Promise<IPost[]> => {
     if (!wp) {
-        console.warn('WPAPI não foi inicializado. Retornando array vazio.');
         return [];
     }
     
@@ -61,7 +53,6 @@ export const getPostsByFilter = async ({ categoryId, page, perPage, excludeCateg
 
 export const getMediaSubtitle = async (mediaId: number): Promise<string> => {
     if (!wp) {
-        console.warn('WPAPI não foi inicializado. Retornando string vazia.');
         return '';
     }
     
@@ -72,7 +63,6 @@ export const getMediaSubtitle = async (mediaId: number): Promise<string> => {
 
 export const getCategoryById = async (id: number): Promise<ICategory | null> => {
     if (!wp) {
-        console.warn('WPAPI não foi inicializado. Retornando null.');
         return null;
     }
     
@@ -86,7 +76,6 @@ export const getSearchByTitle = async ({ query, page, perPage }: {
     perPage: number,
 }): Promise<IPost[]> => {
     if (!apiUrl) {
-        console.warn('NEXT_PUBLIC_API_URL não foi definida. Retornando array vazio.');
         return [];
     }
     
@@ -102,7 +91,7 @@ export const getSearchByContent = async ({ query, page, perPage }: {
     perPage: number,
 }): Promise<IPost[]> => {
     if (!apiUrl) {
-        console.warn('NEXT_PUBLIC_API_URL não foi definida. Retornando array vazio.');
+
         return [];
     }
     
@@ -116,7 +105,6 @@ export const getSearchByContent = async ({ query, page, perPage }: {
 
 export const getComments = async (postId: number): Promise<IComment[]> => {
     if (!wp) {
-        console.warn('WPAPI não foi inicializado. Retornando array vazio.');
         return [];
     }
     
@@ -135,7 +123,6 @@ export const getComments = async (postId: number): Promise<IComment[]> => {
 
 export const postComment = async ({ comment, email, name, date, dateGmt, postId }: ICreateComment): Promise<IError | undefined> => {
     if (!wp) {
-        console.warn('WPAPI não foi inicializado. Não é possível criar comentário.');
         return { message: 'API não está disponível', code: 'API_UNAVAILABLE' } as IError;
     }
     

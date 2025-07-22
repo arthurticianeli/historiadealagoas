@@ -8,7 +8,7 @@ import './globals.css'
 
 import logoHa from 'public/logo-ha.png'
 import CarouselBannersResponsive from 'src/components/banner/carouselBannersResponsive'
-import PublicBanners from 'src/components/banner/publicBanners'
+import TopBannersLayout from 'src/components/banner/topBannersLayout'
 
 export const metadata = {
   title: 'História de Alagoas',
@@ -35,10 +35,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
       <html lang="en" className={roboto.className}>
         <body>
           <Header />
-          <div className='container block lg:flex lg:gap-4 mb-5 lg:mb-10'>
-            <PublicBanners position="topo-1" className='mb-2 lg:mb-0' />
-            <PublicBanners position="topo-2" />
-          </div>
+          <TopBannersLayout />
           <main>
             {children}
           </main>
